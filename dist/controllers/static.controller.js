@@ -36,86 +36,69 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSizeList = exports.getCategoryList = exports.getBrandList = exports.getGenderList = void 0;
+exports.getGenderList = void 0;
 var staticService = require("../services/static.service");
+// exports.getGenderList = async function (req: any, res: any, next) {
+//   const genderList: genderType[] = await staticService.getAllGenderList();
+//   try {
+//     // return genderList;
+//     console.log("genderlist  : ", genderList);
+//     res.status(200).send(genderList);
+//   } catch (e) {
+//     // return e.message;
+//     res.status(400).send(e.message);
+//   }
+// }
 var getGenderList = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var genderList;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, staticService.getAllGenderList()];
+            case 0:
+                console.log("controller start : ");
+                return [4 /*yield*/, staticService.getAllGenderList()];
             case 1:
                 genderList = _a.sent();
                 try {
-                    return [2 /*return*/, genderList];
-                    // res.status(200).send(genderList);
+                    console.log("getgender list in controller : ", genderList);
+                    // return genderList;
+                    res.status(200).json(genderList);
                 }
                 catch (e) {
-                    return [2 /*return*/, e.message];
-                    // res.status(402).send(e.message);
+                    // return e.message;
+                    res.status(400).send(e.message);
                 }
                 return [2 /*return*/];
         }
     });
 }); };
 exports.getGenderList = getGenderList;
-var getBrandList = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var brandList;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, staticService.getAllBrandList()];
-            case 1:
-                brandList = _a.sent();
-                try {
-                    return [2 /*return*/, brandList];
-                }
-                catch (e) {
-                    return [2 /*return*/, e.message];
-                    // res.status(402).send(e.message);
-                }
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.getBrandList = getBrandList;
-var getCategoryList = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var categoryList;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, staticService.getAllCategoryList()];
-            case 1:
-                categoryList = _a.sent();
-                try {
-                    return [2 /*return*/, categoryList];
-                    // res.status(200).send(categoryList);
-                }
-                catch (e) {
-                    return [2 /*return*/, e.message
-                        // res.status(402).send(e.message);
-                    ];
-                    // res.status(402).send(e.message);
-                }
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.getCategoryList = getCategoryList;
-var getSizeList = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var sizeList;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, staticService.getAllSizeList()];
-            case 1:
-                sizeList = _a.sent();
-                try {
-                    return [2 /*return*/, sizeList];
-                    // res.status(200).send(sizeList);
-                }
-                catch (e) {
-                    return [2 /*return*/, e.message];
-                    // res.status(402).send(e.message);
-                }
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.getSizeList = getSizeList;
+// exports.getBrandList = async (req: any, res: any) => {
+//   const brandList: brandType[] = await staticService.getAllBrandList();
+//   try {
+//     res.status(200).send(brandList);
+//     // return brandList;
+//   } catch (e) {
+//     // return e.message;
+//     res.status(400).send(e.message);
+//   }
+// };
+// exports.getCategoryList = async (req: any, res: any) => {
+//   const categoryList: categoryType[] = await staticService.getAllCategoryList();
+//   try {
+//     // return categoryList;
+//     res.status(200).send(categoryList);
+//   } catch (e) {
+//     // return e.message
+//     res.status(400).send(e.message);
+//   }
+// };
+// exports.getSizeList = async (req: any, res: any) => {
+//   const sizeList: sizeType[] = await staticService.getAllSizeList();
+//   try {
+//     // return sizeList;
+//     res.status(200).send(sizeList);
+//   } catch (e) {
+//     // return e.message;
+//     res.status(400).send(e.message);
+//   }
+// };

@@ -36,24 +36,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getGenderList = void 0;
-var genderService = require("../services/gender.service");
-var getGenderList = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var genderList;
+exports.getAllCategoryList = void 0;
+var category_entity_1 = require("../entities/category.entity");
+var data_source_1 = require("../data-source");
+var getAllCategoryList = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var categoryRepository, allCategory;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, genderService.getAllGenderList()];
+            case 0:
+                categoryRepository = data_source_1.myDataSource.getRepository(category_entity_1.Category);
+                return [4 /*yield*/, categoryRepository.find()];
             case 1:
-                genderList = _a.sent();
-                try {
-                    console.log("controller getgenderlist : ", genderList);
-                    res.status(200).json(genderList);
-                }
-                catch (e) {
-                    res.status(400).json(e.message);
-                }
-                return [2 /*return*/];
+                allCategory = _a.sent();
+                console.log("category service : ", allCategory);
+                return [2 /*return*/, allCategory];
         }
     });
 }); };
-exports.getGenderList = getGenderList;
+exports.getAllCategoryList = getAllCategoryList;
