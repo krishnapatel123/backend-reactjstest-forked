@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var gender_route_1 = require("./gender.route");
+var brand_route_1 = require("./brand.route");
+var category_route_1 = require("./category.route");
+var size_route_1 = require("./size.route");
+var product_route_1 = require("./product.route");
+var color_route_1 = require("./color.route");
+var express = require("express");
+var router = express.Router();
+router.use('/gender', gender_route_1.default);
+router.use('/brand', brand_route_1.default);
+router.use('/category', category_route_1.default);
+router.use('/size', size_route_1.default);
+router.use('/color', color_route_1.default);
+router.use('/product', product_route_1.default);
+exports.default = router;

@@ -46,7 +46,6 @@ var getGenderList = function (req, res) { return __awaiter(void 0, void 0, void 
             case 1:
                 genderList = _a.sent();
                 try {
-                    console.log("controller getgenderlist : ", genderList);
                     res.status(200).json(genderList);
                 }
                 catch (e) {

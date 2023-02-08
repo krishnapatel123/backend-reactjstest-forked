@@ -1,15 +1,10 @@
 import * as express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import { myDataSource } from './data-source'
-import genderRoute from './routes/gender.route';
-import brandRoute from './routes/brand.route';
-import categoryRoute from './routes/category.route';
-import sizeRoute from './routes/size.route';
 
-function loggerMiddleware(request: express.Request, response: express.Response, next) {
-  console.log(`${request.method} ${request.path}`);
-  next();
-}
+import indexRoute from './routes/index.route';
+
+const bodyParser = require('body-parser');
 
 const main = () => {
   myDataSource
@@ -25,15 +20,10 @@ const main = () => {
   app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(500).json({ message: err.message });
   });
-  app.use(loggerMiddleware)
+  app.use('/uploads', express.static('./uploads'));
+  app.use(bodyParser.json());
   app.use(express.json())
-  app.use('/gender', genderRoute)
-  app.use('/brand', brandRoute)
-  app.use('/category', categoryRoute)
-  app.use('/size', sizeRoute)
-  app.get('/', (req, res) => {
-    res.send('hello world')
-  })
-  app.listen(3000)
+  app.use('/api', indexRoute)
+  app.listen(3001)
 }
 main()

@@ -48,7 +48,6 @@ var getAllBrandList = function () { return __awaiter(void 0, void 0, void 0, fun
                 return [4 /*yield*/, brandRepository.find()];
             case 1:
                 allBrand = _a.sent();
-                console.log("brand service : ", allBrand);
                 return [2 /*return*/, allBrand];
         }
     });

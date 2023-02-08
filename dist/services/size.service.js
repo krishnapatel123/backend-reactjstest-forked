@@ -48,7 +48,6 @@ var getAllSizeList = function () { return __awaiter(void 0, void 0, void 0, func
                 return [4 /*yield*/, SizeRepository.find()];
             case 1:
                 allSize = _a.sent();
-                console.log("size service : ", allSize);
                 return [2 /*return*/, allSize];
         }
     });

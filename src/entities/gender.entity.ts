@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm"
+import { Product } from "./product.entity";
 
 @Entity()
 export class Gender {
@@ -7,4 +8,7 @@ export class Gender {
 
   @Column()
   name: string
+
+  @OneToMany(() => Product, product => product.brand, { cascade: true })
+  products: Product[];
 }

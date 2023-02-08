@@ -48,7 +48,6 @@ var getAllGenderList = function () { return __awaiter(void 0, void 0, void 0, fu
                 return [4 /*yield*/, genderRepository.find()];
             case 1:
                 allGender = _a.sent();
-                console.log("gender service : ", allGender);
                 return [2 /*return*/, allGender];
         }
     });

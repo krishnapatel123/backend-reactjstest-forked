@@ -46,7 +46,6 @@ var getSizeList = function (req, res) { return __awaiter(void 0, void 0, void 0,
             case 1:
                 sizeList = _a.sent();
                 try {
-                    console.log("controller getsizelist : ", sizeList);
                     res.status(200).json(sizeList);
                 }
                 catch (e) {

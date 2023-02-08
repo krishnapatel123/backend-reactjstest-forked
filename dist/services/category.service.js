@@ -48,7 +48,6 @@ var getAllCategoryList = function () { return __awaiter(void 0, void 0, void 0, 
                 return [4 /*yield*/, categoryRepository.find()];
             case 1:
                 allCategory = _a.sent();
-                console.log("category service : ", allCategory);
                 return [2 /*return*/, allCategory];
         }
     });

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Gender = void 0;
 var typeorm_1 = require("typeorm");
+var product_entity_1 = require("./product.entity");
 var Gender = /** @class */ (function () {
     function Gender() {
     }
@@ -22,6 +23,10 @@ var Gender = /** @class */ (function () {
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
     ], Gender.prototype, "name", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.brand; }, { cascade: true }),
+        __metadata("design:type", Array)
+    ], Gender.prototype, "products", void 0);
     Gender = __decorate([
         (0, typeorm_1.Entity)()
     ], Gender);

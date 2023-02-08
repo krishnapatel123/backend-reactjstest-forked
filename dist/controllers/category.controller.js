@@ -46,7 +46,6 @@ var getCategoryList = function (req, res) { return __awaiter(void 0, void 0, voi
             case 1:
                 categoryList = _a.sent();
                 try {
-                    console.log("controller getcateogrylist : ", categoryList);
                     res.status(200).json(categoryList);
                 }
                 catch (e) {

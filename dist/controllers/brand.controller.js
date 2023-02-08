@@ -46,7 +46,6 @@ var getBrandList = function (req, res) { return __awaiter(void 0, void 0, void 0
             case 1:
                 brandList = _a.sent();
                 try {
-                    console.log("controller getbrandlist : ", brandList);
                     res.status(200).json(brandList);
                 }
                 catch (e) {
