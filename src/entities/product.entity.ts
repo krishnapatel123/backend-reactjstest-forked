@@ -40,8 +40,14 @@ export class Product {
   @Column()
   sizeId: number
 
+  // @Column('simple-array', { nullable: false })
+  // sizeId: number[];
+
   @Column()
   colorId: number
+
+  // @Column('simple-array', { nullable: false })
+  // colorId: number[];
 
   @Column({
     default: false,

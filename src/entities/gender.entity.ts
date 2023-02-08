@@ -9,6 +9,9 @@ export class Gender {
   @Column()
   name: string
 
-  @OneToMany(() => Product, product => product.brand, { cascade: true })
+  @Column()
+  value: string
+
+  @OneToMany(() => Product, product => product.brand, { onDelete: 'CASCADE' })
   products: Product[];
 }

@@ -9,6 +9,9 @@ export class Size {
   @Column()
   name: string
 
-  @OneToMany(() => Product, product => product.brand, { cascade: true })
+  @Column()
+  value: string
+
+  @OneToMany(() => Product, product => product.size, { onDelete: 'CASCADE' })
   products: Product[];
 }

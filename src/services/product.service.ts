@@ -37,7 +37,7 @@ const categoryProductList = [
     brandId: 2,
     categoryId: 4,
     sizeId: 2,
-    colorId: 1,
+    colorId: 2,
     productDesc: "Product description",
     reviewRate: 2,
     imageCollections: [
@@ -83,7 +83,7 @@ const categoryProductList = [
     brandId: 7,
     categoryId: 1,
     sizeId: 3,
-    colorId: 1,
+    colorId: 7,
     productDesc: "Product description 1",
     reviewRate: 4,
     imageCollections: [
@@ -152,7 +152,7 @@ const categoryProductList = [
     brandId: 9,
     categoryId: 1,
     sizeId: 2,
-    colorId: 1,
+    colorId: 7,
     productDesc: "Product description 1",
     reviewRate: 4,
     imageCollections: [
@@ -213,6 +213,7 @@ const categoryProductList = [
 ];
 
 export const addProduct = async (): Promise<productType> => {
+  console.log("service : ");
 
   categoryProductList.map(async (productObj, index) => {
     const productRepository = myDataSource.getRepository(Product)
@@ -231,11 +232,7 @@ export const addProduct = async (): Promise<productType> => {
     product.description = productObj.productDesc
     product.reviewRate = productObj.reviewRate
     product.imageCollections = productObj.imageCollections
-    console.log("service product obj : ", product);
-
     const svaeProduct = await productRepository.save(product)
-    console.log("after svaeProduct index : ", index, "& product ", svaeProduct);
-
   })
   return;
 }

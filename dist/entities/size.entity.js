@@ -24,7 +24,11 @@ var Size = /** @class */ (function () {
         __metadata("design:type", String)
     ], Size.prototype, "name", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.brand; }, { cascade: true }),
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], Size.prototype, "value", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.size; }, { onDelete: 'CASCADE' }),
         __metadata("design:type", Array)
     ], Size.prototype, "products", void 0);
     Size = __decorate([

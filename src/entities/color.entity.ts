@@ -9,6 +9,14 @@ export class Color {
   @Column()
   name: string
 
-  @OneToMany(() => Product, product => product.color, { cascade: true })
+  @Column()
+  value: string
+
+  @Column()
+  haxCode: string
+
+  @OneToMany(() => Product, product => product.color, {
+    onDelete: 'CASCADE'
+  })
   products: Product[];
 }

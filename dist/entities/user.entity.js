@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserData = void 0;
 var typeorm_1 = require("typeorm");
+var shipping_entity_1 = require("./shipping.entity");
+var checkout_entity_1 = require("./checkout.entity");
 var UserData = /** @class */ (function () {
     function UserData() {
     }
@@ -23,13 +25,13 @@ var UserData = /** @class */ (function () {
         __metadata("design:type", String)
     ], UserData.prototype, "name", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], UserData.prototype, "email", void 0);
+        (0, typeorm_1.OneToOne)(function () { return shipping_entity_1.Shipping; }, function (shipping) { return shipping.user; }),
+        __metadata("design:type", shipping_entity_1.Shipping)
+    ], UserData.prototype, "shipping", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], UserData.prototype, "password", void 0);
+        (0, typeorm_1.OneToOne)(function () { return checkout_entity_1.Checkout; }, function (checkout) { return checkout.user; }),
+        __metadata("design:type", checkout_entity_1.Checkout)
+    ], UserData.prototype, "checkout", void 0);
     UserData = __decorate([
         (0, typeorm_1.Entity)()
     ], UserData);

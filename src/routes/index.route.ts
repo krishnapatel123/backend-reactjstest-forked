@@ -4,6 +4,8 @@ import categoryRoute from './category.route';
 import sizeRoute from './size.route';
 import productRoute from './product.route';
 import colorRoute from './color.route';
+import shippingRoute from './shipping.route';
+import checkoutRoute from './checkout.route';
 import * as express from 'express';
 
 const router = express.Router();
@@ -14,5 +16,7 @@ router.use('/category', categoryRoute)
 router.use('/size', sizeRoute)
 router.use('/color', colorRoute)
 router.use('/product', productRoute)
+router.use('/shipping', shippingRoute)
+router.use('/checkout', checkoutRoute)
 
 export default router;

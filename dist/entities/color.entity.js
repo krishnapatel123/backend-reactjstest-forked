@@ -24,7 +24,17 @@ var Color = /** @class */ (function () {
         __metadata("design:type", String)
     ], Color.prototype, "name", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.color; }, { cascade: true }),
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], Color.prototype, "value", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], Color.prototype, "haxCode", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.color; }, {
+            onDelete: 'CASCADE'
+        }),
         __metadata("design:type", Array)
     ], Color.prototype, "products", void 0);
     Color = __decorate([

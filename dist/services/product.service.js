@@ -74,7 +74,7 @@ var categoryProductList = [
         brandId: 2,
         categoryId: 4,
         sizeId: 2,
-        colorId: 1,
+        colorId: 2,
         productDesc: "Product description",
         reviewRate: 2,
         imageCollections: [
@@ -120,7 +120,7 @@ var categoryProductList = [
         brandId: 7,
         categoryId: 1,
         sizeId: 3,
-        colorId: 1,
+        colorId: 7,
         productDesc: "Product description 1",
         reviewRate: 4,
         imageCollections: [
@@ -189,7 +189,7 @@ var categoryProductList = [
         brandId: 9,
         categoryId: 1,
         sizeId: 2,
-        colorId: 1,
+        colorId: 7,
         productDesc: "Product description 1",
         reviewRate: 4,
         imageCollections: [
@@ -250,6 +250,7 @@ var categoryProductList = [
 ];
 var addProduct = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
+        console.log("service : ");
         categoryProductList.map(function (productObj, index) { return __awaiter(void 0, void 0, void 0, function () {
             var productRepository, product, svaeProduct;
             return __generator(this, function (_a) {
@@ -271,11 +272,10 @@ var addProduct = function () { return __awaiter(void 0, void 0, void 0, function
                         product.description = productObj.productDesc;
                         product.reviewRate = productObj.reviewRate;
                         product.imageCollections = productObj.imageCollections;
-                        console.log("service product obj : ", product);
                         return [4 /*yield*/, productRepository.save(product)];
                     case 1:
                         svaeProduct = _a.sent();
-                        console.log("after svaeProduct index : ", index, "& product ", svaeProduct);
+                        console.log("service product obj : ", product);
                         return [2 /*return*/];
                 }
             });
