@@ -12,6 +12,23 @@ export interface shippingType {
   zipCode: string;
 }
 
+export interface afterAddShippingType {
+  id: number | null;
+  userData: {
+    id: number,
+    name: string
+  };
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  deliveryDate: string;
+  convenientTime: string;
+  city: string;
+  address: string;
+  zipCode: string;
+}
+
 export interface getShippingType {
   id: number | null;
   userData: {

@@ -10,7 +10,6 @@ export const addShipping = async (shippingObject: shippingType) => {
 
   const userRepository = myDataSource.getRepository(UserData)
   const userData = await userRepository.findOne({ where: { id: shippingObject.userId } })
-  console.log("userid data : ", userData);
 
   shipping.userData = userData
   shipping.firstName = shippingObject.firstName

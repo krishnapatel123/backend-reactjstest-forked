@@ -240,15 +240,12 @@ export const addProduct = async (): Promise<productType> => {
 
     const brandRepository = myDataSource.getRepository(Brand)
     const brandData = await brandRepository.findOne({ where: { id: productObj.brandId } })
-    console.log("brand data : ", brandData);
 
     const genderRepository = myDataSource.getRepository(Gender)
     const genderData = await genderRepository.findOne({ where: { id: productObj.genderId } })
-    console.log("gender data : ", genderData);
 
     const categoryRepository = myDataSource.getRepository(Category)
     const categoryData = await categoryRepository.findOne({ where: { id: productObj.categoryId } })
-    console.log("category data : ", categoryData);
 
     product.name = productObj.productName
     product.imageMedia = productObj.imageSource
@@ -272,7 +269,6 @@ export const addProduct = async (): Promise<productType> => {
 export const getAllProductList = async (): Promise<getProductType[]> => {
   const productRepository = myDataSource.getRepository(Product)
   const allProduct = await productRepository.find({ relations: { brand: true, gender: true, category: true } })
-  console.log("allproduct : ", allProduct);
 
   return allProduct;
 }

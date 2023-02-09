@@ -51,22 +51,18 @@ var addOrderDetails = function (orderDetailsObj) { return __awaiter(void 0, void
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                console.log("start service :: ", orderDetailsObj);
                 userRepository = data_source_1.myDataSource.getRepository(user_entity_1.UserData);
                 return [4 /*yield*/, userRepository.findOne({ where: { id: orderDetailsObj.userId } })];
             case 1:
                 userData = _a.sent();
-                console.log("userid data : ", userData);
                 shippingRepository = data_source_1.myDataSource.getRepository(shipping_entity_1.Shipping);
                 return [4 /*yield*/, shippingRepository.findOne({ where: { id: orderDetailsObj.shippingId } })];
             case 2:
                 shippingData = _a.sent();
-                console.log("userid data : ", shippingData);
                 checkoutRepository = data_source_1.myDataSource.getRepository(checkout_entity_1.Checkout);
                 return [4 /*yield*/, checkoutRepository.findOne({ where: { id: orderDetailsObj.checkoutId } })];
             case 3:
                 checkoutData = _a.sent();
-                console.log("userid data : ", checkoutData);
                 return [4 /*yield*/, data_source_1.myDataSource
                         .createQueryBuilder()
                         .insert()
@@ -82,23 +78,19 @@ var addOrderDetails = function (orderDetailsObj) { return __awaiter(void 0, void
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
-                                    console.log("saveobj orderdetails : ", res === null || res === void 0 ? void 0 : res.identifiers[0].id);
                                     lastInsertedOrderId = res === null || res === void 0 ? void 0 : res.identifiers[0].id;
                                     productRepository = data_source_1.myDataSource.getRepository(product_entity_1.Product);
                                     return [4 /*yield*/, productRepository.findOne({ where: { id: orderDetailsObj.productId } })];
                                 case 1:
                                     productData = _a.sent();
-                                    console.log("userid data : ", productData);
                                     colorRepository = data_source_1.myDataSource.getRepository(color_entity_1.Color);
                                     return [4 /*yield*/, colorRepository.findOne({ where: { id: orderDetailsObj.colorId } })];
                                 case 2:
                                     colorData = _a.sent();
-                                    console.log("userid data : ", colorData);
                                     sizeRepository = data_source_1.myDataSource.getRepository(size_entity_1.Size);
                                     return [4 /*yield*/, sizeRepository.findOne({ where: { id: orderDetailsObj.sizeId } })];
                                 case 3:
                                     sizeData = _a.sent();
-                                    console.log("userid data : ", sizeData);
                                     return [4 /*yield*/, data_source_1.myDataSource.createQueryBuilder().insert().into(orderItems_entity_1.OrderItems).values({
                                             orderDetails: lastInsertedOrderId,
                                             product: productData,
@@ -107,7 +99,7 @@ var addOrderDetails = function (orderDetailsObj) { return __awaiter(void 0, void
                                             size: sizeData,
                                         }).execute().then(function (res) { return __awaiter(void 0, void 0, void 0, function () {
                                             return __generator(this, function (_a) {
-                                                console.log("saveobj order item details : ", res);
+                                                console.log("after save obj : ", res);
                                                 return [2 /*return*/, res];
                                             });
                                         }); })];
@@ -131,15 +123,14 @@ var getOrderDetails = function () { return __awaiter(void 0, void 0, void 0, fun
             case 0: return [4 /*yield*/, data_source_1.myDataSource.getRepository(orderDetails_entity_1.OrderDetails)
                     .createQueryBuilder("orderDetails")
                     .innerJoinAndSelect("orderDetails.orderItemDetails", "orderItemDetails")
-                    .innerJoinAndSelect("orderItemDetails.color", "color")
-                    .leftJoinAndSelect("orderItemDetails.size", "size")
                     .innerJoinAndSelect("orderDetails.userData", "userData")
                     .innerJoinAndSelect("orderDetails.shippingDetails", "shippingDetails")
                     .innerJoinAndSelect("orderDetails.checkoutDetails", "checkoutDetails")
+                    .leftJoinAndSelect("orderItemDetails.size", "size")
+                    .leftJoinAndSelect("orderItemDetails.color", "color")
                     .getOne()];
             case 1:
                 orderDetails = _a.sent();
-                console.log("orderDetails : ", orderDetails);
                 return [2 /*return*/, orderDetails];
         }
     });

@@ -1,11 +1,9 @@
 import * as shippingService from "../services/shipping.service";
 import { Request, Response } from "express"
-import { getShippingType, shippingType } from '../types/shipping.type';
+import { afterAddShippingType, getShippingType } from '../types/shipping.type';
 
 export const addShippingDetails = async (req: Request, res: Response) => {
-  console.log("req.body in shipping controller : ", req.body);
-
-  const addProductList: shippingType = await shippingService.addShipping(req.body);
+  const addProductList: afterAddShippingType = await shippingService.addShipping(req.body);
   try {
     res.status(200).json(addProductList);
   } catch (e) {

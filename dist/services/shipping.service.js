@@ -51,7 +51,6 @@ var addShipping = function (shippingObject) { return __awaiter(void 0, void 0, v
                 return [4 /*yield*/, userRepository.findOne({ where: { id: shippingObject.userId } })];
             case 1:
                 userData = _a.sent();
-                console.log("userid data : ", userData);
                 shipping.userData = userData;
                 shipping.firstName = shippingObject.firstName;
                 shipping.lastName = shippingObject.lastName;

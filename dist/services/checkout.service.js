@@ -51,7 +51,6 @@ var addCheckout = function (checkoutObject) { return __awaiter(void 0, void 0, v
                 return [4 /*yield*/, userRepository.findOne({ where: { id: checkoutObject.userId } })];
             case 1:
                 userData = _a.sent();
-                console.log("userid data : ", userData);
                 checkout.userData = userData;
                 checkout.paymentMethod = checkoutObject.paymentMethod;
                 checkout.cardName = checkoutObject.cardName;

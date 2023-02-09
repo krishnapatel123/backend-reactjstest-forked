@@ -10,7 +10,6 @@ export const addCheckout = async (checkoutObject: checkoutType) => {
 
   const userRepository = myDataSource.getRepository(UserData)
   const userData = await userRepository.findOne({ where: { id: checkoutObject.userId } })
-  console.log("userid data : ", userData);
 
   checkout.userData = userData
   checkout.paymentMethod = checkoutObject.paymentMethod

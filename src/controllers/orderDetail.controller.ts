@@ -1,6 +1,6 @@
 import * as orderDetailServices from "../services/orderDetail.service";
 import { Request, Response } from "express"
-import { commonOrderType, orderItemType } from '../types/orderDetail.type';
+import { getOrderDetailType } from '../types/orderDetail.type';
 
 export const addOrderDetails = async (req: Request, res: Response) => {
   const addOrderDetailObj = await orderDetailServices.addOrderDetails(req.body);
@@ -12,7 +12,7 @@ export const addOrderDetails = async (req: Request, res: Response) => {
 };
 
 export const getOrderDetailsList = async (req: Request, res: Response) => {
-  const orderDetailsList: orderItemType[] = await orderDetailServices.getOrderDetails();
+  const orderDetailsList: getOrderDetailType = await orderDetailServices.getOrderDetails();
   try {
     res.status(200).json(orderDetailsList);
   } catch (e) {

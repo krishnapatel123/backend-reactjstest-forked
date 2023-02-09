@@ -42,9 +42,7 @@ var addShippingDetails = function (req, res) { return __awaiter(void 0, void 0, 
     var addProductList;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                console.log("req.body in shipping controller : ", req.body);
-                return [4 /*yield*/, shippingService.addShipping(req.body)];
+            case 0: return [4 /*yield*/, shippingService.addShipping(req.body)];
             case 1:
                 addProductList = _a.sent();
                 try {

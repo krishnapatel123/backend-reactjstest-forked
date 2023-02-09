@@ -285,17 +285,14 @@ var addProduct = function () { return __awaiter(void 0, void 0, void 0, function
                                 return [4 /*yield*/, brandRepository.findOne({ where: { id: productObj.brandId } })];
                             case 1:
                                 brandData = _a.sent();
-                                console.log("brand data : ", brandData);
                                 genderRepository = data_source_1.myDataSource.getRepository(gender_entity_1.Gender);
                                 return [4 /*yield*/, genderRepository.findOne({ where: { id: productObj.genderId } })];
                             case 2:
                                 genderData = _a.sent();
-                                console.log("gender data : ", genderData);
                                 categoryRepository = data_source_1.myDataSource.getRepository(category_entity_1.Category);
                                 return [4 /*yield*/, categoryRepository.findOne({ where: { id: productObj.categoryId } })];
                             case 3:
                                 categoryData = _a.sent();
-                                console.log("category data : ", categoryData);
                                 product.name = productObj.productName;
                                 product.imageMedia = productObj.imageSource;
                                 product.currentPrice = productObj.productCurrentPrice;
@@ -331,7 +328,6 @@ var getAllProductList = function () { return __awaiter(void 0, void 0, void 0, f
                 return [4 /*yield*/, productRepository.find({ relations: { brand: true, gender: true, category: true } })];
             case 1:
                 allProduct = _a.sent();
-                console.log("allproduct : ", allProduct);
                 return [2 /*return*/, allProduct];
         }
     });
