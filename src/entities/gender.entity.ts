@@ -12,6 +12,6 @@ export class Gender {
   @Column()
   value: string
 
-  @OneToMany(() => Product, product => product.brand, { onDelete: 'CASCADE' })
+  @OneToMany(() => Product, product => product.gender)
   products: Product[];
 }

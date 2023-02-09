@@ -13,9 +13,8 @@ exports.Product = void 0;
 var typeorm_1 = require("typeorm");
 var brand_entity_1 = require("./brand.entity");
 var category_entity_1 = require("./category.entity");
-var size_entity_1 = require("./size.entity");
 var gender_entity_1 = require("./gender.entity");
-var color_entity_1 = require("./color.entity");
+var orderItems_entity_1 = require("./orderItems.entity");
 var Product = /** @class */ (function () {
     function Product() {
     }
@@ -46,24 +45,12 @@ var Product = /** @class */ (function () {
         __metadata("design:type", Number)
     ], Product.prototype, "originalPrice", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Number)
-    ], Product.prototype, "genderId", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Number)
-    ], Product.prototype, "brandId", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Number)
-    ], Product.prototype, "categoryId", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Number)
+        (0, typeorm_1.Column)('simple-array', { nullable: false }),
+        __metadata("design:type", Array)
     ], Product.prototype, "sizeId", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Number)
+        (0, typeorm_1.Column)('simple-array', { nullable: false }),
+        __metadata("design:type", Array)
     ], Product.prototype, "colorId", void 0);
     __decorate([
         (0, typeorm_1.Column)({
@@ -95,25 +82,27 @@ var Product = /** @class */ (function () {
         __metadata("design:type", Array)
     ], Product.prototype, "imageCollections", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return brand_entity_1.Brand; }, function (brand) { return brand.products; }),
-        __metadata("design:type", Array)
+        (0, typeorm_1.ManyToOne)(function () { return brand_entity_1.Brand; }, function (brand) { return brand.products; }, {
+            cascade: true,
+        }),
+        __metadata("design:type", brand_entity_1.Brand)
     ], Product.prototype, "brand", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return category_entity_1.Category; }, function (category) { return category.products; }),
-        __metadata("design:type", Array)
+        (0, typeorm_1.ManyToOne)(function () { return category_entity_1.Category; }, function (category) { return category.products; }, {
+            cascade: true,
+        }),
+        __metadata("design:type", category_entity_1.Category)
     ], Product.prototype, "category", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return size_entity_1.Size; }, function (size) { return size.products; }),
-        __metadata("design:type", Array)
-    ], Product.prototype, "size", void 0);
-    __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return gender_entity_1.Gender; }, function (gender) { return gender.products; }),
-        __metadata("design:type", Array)
+        (0, typeorm_1.ManyToOne)(function () { return gender_entity_1.Gender; }, function (gender) { return gender.products; }, {
+            cascade: true,
+        }),
+        __metadata("design:type", gender_entity_1.Gender)
     ], Product.prototype, "gender", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return color_entity_1.Color; }, function (color) { return color.products; }),
-        __metadata("design:type", Array)
-    ], Product.prototype, "color", void 0);
+        (0, typeorm_1.OneToMany)(function () { return orderItems_entity_1.OrderItems; }, function (orderItemDetails) { return orderItemDetails.product; }),
+        __metadata("design:type", orderItems_entity_1.OrderItems)
+    ], Product.prototype, "orderItemDetails", void 0);
     Product = __decorate([
         (0, typeorm_1.Entity)()
     ], Product);

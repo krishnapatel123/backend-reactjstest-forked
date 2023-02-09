@@ -1,6 +1,11 @@
 import { myDataSource } from '../data-source';
-import { productType } from '../types/product.type';
+import { getProductType, productType } from '../types/product.type';
 import { Product } from '../entities/product.entity';
+import { Color } from '../entities/color.entity';
+import { Size } from '../entities/size.entity';
+import { Brand } from '../entities/brand.entity';
+import { Gender } from '../entities/gender.entity';
+import { Category } from '../entities/category.entity';
 
 const categoryProductList = [
   {
@@ -213,32 +218,61 @@ const categoryProductList = [
 ];
 
 export const addProduct = async (): Promise<productType> => {
-  console.log("service : ");
+  const colorRepo = myDataSource.getRepository(Color)
+  const allColor = await colorRepo.find({ select: { id: true } })
+
+  let allColorIds = [];
+  allColor.map((v) => {
+    allColorIds.push(v.id);
+  })
+
+  const sizeRepo = myDataSource.getRepository(Size)
+  const allSize = await sizeRepo.find({ select: { id: true } })
+
+  let allSizeIds = [];
+  allSize.map((v) => {
+    allSizeIds.push(v.id);
+  })
 
   categoryProductList.map(async (productObj, index) => {
     const productRepository = myDataSource.getRepository(Product)
     const product = new Product();
+
+    const brandRepository = myDataSource.getRepository(Brand)
+    const brandData = await brandRepository.findOne({ where: { id: productObj.brandId } })
+    console.log("brand data : ", brandData);
+
+    const genderRepository = myDataSource.getRepository(Gender)
+    const genderData = await genderRepository.findOne({ where: { id: productObj.genderId } })
+    console.log("gender data : ", genderData);
+
+    const categoryRepository = myDataSource.getRepository(Category)
+    const categoryData = await categoryRepository.findOne({ where: { id: productObj.categoryId } })
+    console.log("category data : ", categoryData);
+
     product.name = productObj.productName
     product.imageMedia = productObj.imageSource
     product.currentPrice = productObj.productCurrentPrice
     product.originalPrice = productObj.productOriginalPrice
-    product.genderId = productObj.genderId
-    product.brandId = productObj.brandId
-    product.categoryId = productObj.categoryId
-    product.colorId = productObj.colorId
-    product.sizeId = productObj.sizeId
+    product.gender = genderData
+    product.brand = brandData
+    product.category = categoryData
+    product.colorId = allColorIds
+    product.sizeId = allSizeIds
     product.isLike = productObj.isLike
     product.isNewArrival = productObj.isNewArrival
     product.description = productObj.productDesc
     product.reviewRate = productObj.reviewRate
     product.imageCollections = productObj.imageCollections
-    const svaeProduct = await productRepository.save(product)
+    await productRepository.save(product)
   })
   return;
 }
 
-export const getAllProductList = async (): Promise<productType[]> => {
+export const getAllProductList = async (): Promise<getProductType[]> => {
   const productRepository = myDataSource.getRepository(Product)
-  const allProduct = await productRepository.find()
+  const allProduct = await productRepository.find({ relations: { brand: true, gender: true, category: true } })
+  console.log("allproduct : ", allProduct);
+
   return allProduct;
 }

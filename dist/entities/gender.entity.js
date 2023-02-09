@@ -28,7 +28,7 @@ var Gender = /** @class */ (function () {
         __metadata("design:type", String)
     ], Gender.prototype, "value", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.brand; }, { onDelete: 'CASCADE' }),
+        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.gender; }),
         __metadata("design:type", Array)
     ], Gender.prototype, "products", void 0);
     Gender = __decorate([

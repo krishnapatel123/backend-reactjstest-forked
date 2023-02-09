@@ -1,9 +1,5 @@
-export enum paymentMethodList {
-  CARD = "credit/debitCard",
-  PAYPAL = "paypal",
-  BITCOIN = "bitcoin"
-}
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToMany, ManyToOne } from "typeorm"
+import { OrderDetails } from "./orderDetails.entity";
 import { UserData } from "./user.entity";
 
 @Entity()
@@ -12,14 +8,7 @@ export class Checkout {
   id: number
 
   @Column()
-  userId: number
-
-  @Column({
-    type: "enum",
-    enum: paymentMethodList,
-    default: paymentMethodList.CARD
-  })
-  paymentMethod: paymentMethodList
+  paymentMethod: string
 
   @Column()
   cardName: string
@@ -33,7 +22,12 @@ export class Checkout {
   @Column()
   cvvCode: number
 
-  @OneToOne(() => UserData, userData => userData.checkout, { cascade: true })
+  @ManyToOne(() => UserData, userData => userData.checkout, {
+    cascade: true,
+  })
   @JoinColumn()
-  user: UserData
+  userData: UserData
+
+  @OneToMany(() => OrderDetails, (orderDetails) => orderDetails.checkoutDetails)
+  orderDetails: OrderDetails[]
 }

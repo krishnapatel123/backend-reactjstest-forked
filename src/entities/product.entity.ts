@@ -1,9 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinTable } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm"
 import { Brand } from "./brand.entity";
 import { Category } from './category.entity';
-import { Size } from './size.entity';
 import { Gender } from './gender.entity';
-import { Color } from "./color.entity";
+import { OrderItems } from './orderItems.entity';
 
 @Entity()
 export class Product {
@@ -28,26 +27,11 @@ export class Product {
   })
   originalPrice: number
 
-  @Column()
-  genderId: number
+  @Column('simple-array', { nullable: false })
+  sizeId: number[];
 
-  @Column()
-  brandId: number
-
-  @Column()
-  categoryId: number
-
-  @Column()
-  sizeId: number
-
-  // @Column('simple-array', { nullable: false })
-  // sizeId: number[];
-
-  @Column()
-  colorId: number
-
-  // @Column('simple-array', { nullable: false })
-  // colorId: number[];
+  @Column('simple-array', { nullable: false })
+  colorId: number[];
 
   @Column({
     default: false,
@@ -73,18 +57,21 @@ export class Product {
   @Column('simple-array', { nullable: false })
   imageCollections: string[];
 
-  @ManyToOne(() => Brand, (brand) => brand.products)
-  brand: Brand[]
+  @ManyToOne(() => Brand, (brand) => brand.products, {
+    cascade: true,
+  })
+  brand: Brand
 
-  @ManyToOne(() => Category, (category) => category.products)
-  category: Category[]
+  @ManyToOne(() => Category, (category) => category.products, {
+    cascade: true,
+  })
+  category: Category
 
-  @ManyToOne(() => Size, (size) => size.products)
-  size: Size[]
+  @ManyToOne(() => Gender, (gender) => gender.products, {
+    cascade: true,
+  })
+  gender: Gender
 
-  @ManyToOne(() => Gender, (gender) => gender.products)
-  gender: Gender[]
-
-  @ManyToOne(() => Color, (color) => color.products)
-  color: Color[]
+  @OneToMany(() => OrderItems, (orderItemDetails) => orderItemDetails.product)
+  orderItemDetails: OrderItems
 }

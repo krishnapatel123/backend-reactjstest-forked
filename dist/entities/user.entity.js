@@ -13,6 +13,7 @@ exports.UserData = void 0;
 var typeorm_1 = require("typeorm");
 var shipping_entity_1 = require("./shipping.entity");
 var checkout_entity_1 = require("./checkout.entity");
+var orderDetails_entity_1 = require("./orderDetails.entity");
 var UserData = /** @class */ (function () {
     function UserData() {
     }
@@ -25,13 +26,17 @@ var UserData = /** @class */ (function () {
         __metadata("design:type", String)
     ], UserData.prototype, "name", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return shipping_entity_1.Shipping; }, function (shipping) { return shipping.user; }),
-        __metadata("design:type", shipping_entity_1.Shipping)
+        (0, typeorm_1.OneToMany)(function () { return shipping_entity_1.Shipping; }, function (shipping) { return shipping.userData; }),
+        __metadata("design:type", Array)
     ], UserData.prototype, "shipping", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return checkout_entity_1.Checkout; }, function (checkout) { return checkout.user; }),
-        __metadata("design:type", checkout_entity_1.Checkout)
+        (0, typeorm_1.OneToMany)(function () { return checkout_entity_1.Checkout; }, function (checkout) { return checkout.userData; }),
+        __metadata("design:type", Array)
     ], UserData.prototype, "checkout", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return orderDetails_entity_1.OrderDetails; }, function (orderDetails) { return orderDetails.userData; }),
+        __metadata("design:type", Array)
+    ], UserData.prototype, "orderDetails", void 0);
     UserData = __decorate([
         (0, typeorm_1.Entity)()
     ], UserData);

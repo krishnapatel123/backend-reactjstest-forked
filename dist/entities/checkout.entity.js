@@ -9,14 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Checkout = exports.paymentMethodList = void 0;
-var paymentMethodList;
-(function (paymentMethodList) {
-    paymentMethodList["CARD"] = "credit/debitCard";
-    paymentMethodList["PAYPAL"] = "paypal";
-    paymentMethodList["BITCOIN"] = "bitcoin";
-})(paymentMethodList = exports.paymentMethodList || (exports.paymentMethodList = {}));
+exports.Checkout = void 0;
 var typeorm_1 = require("typeorm");
+var orderDetails_entity_1 = require("./orderDetails.entity");
 var user_entity_1 = require("./user.entity");
 var Checkout = /** @class */ (function () {
     function Checkout() {
@@ -27,14 +22,6 @@ var Checkout = /** @class */ (function () {
     ], Checkout.prototype, "id", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
-        __metadata("design:type", Number)
-    ], Checkout.prototype, "userId", void 0);
-    __decorate([
-        (0, typeorm_1.Column)({
-            type: "enum",
-            enum: paymentMethodList,
-            default: paymentMethodList.CARD
-        }),
         __metadata("design:type", String)
     ], Checkout.prototype, "paymentMethod", void 0);
     __decorate([
@@ -54,10 +41,16 @@ var Checkout = /** @class */ (function () {
         __metadata("design:type", Number)
     ], Checkout.prototype, "cvvCode", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return user_entity_1.UserData; }, function (userData) { return userData.checkout; }, { cascade: true }),
+        (0, typeorm_1.ManyToOne)(function () { return user_entity_1.UserData; }, function (userData) { return userData.checkout; }, {
+            cascade: true,
+        }),
         (0, typeorm_1.JoinColumn)(),
         __metadata("design:type", user_entity_1.UserData)
-    ], Checkout.prototype, "user", void 0);
+    ], Checkout.prototype, "userData", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return orderDetails_entity_1.OrderDetails; }, function (orderDetails) { return orderDetails.checkoutDetails; }),
+        __metadata("design:type", Array)
+    ], Checkout.prototype, "orderDetails", void 0);
     Checkout = __decorate([
         (0, typeorm_1.Entity)()
     ], Checkout);

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Shipping = void 0;
 var typeorm_1 = require("typeorm");
+var orderDetails_entity_1 = require("./orderDetails.entity");
 var user_entity_1 = require("./user.entity");
 var Shipping = /** @class */ (function () {
     function Shipping() {
@@ -23,10 +24,6 @@ var Shipping = /** @class */ (function () {
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
     ], Shipping.prototype, "firstName", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Number)
-    ], Shipping.prototype, "userId", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
@@ -60,10 +57,15 @@ var Shipping = /** @class */ (function () {
         __metadata("design:type", String)
     ], Shipping.prototype, "zipCode", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return user_entity_1.UserData; }, function (userData) { return userData.shipping; }, { cascade: true }),
-        (0, typeorm_1.JoinColumn)(),
+        (0, typeorm_1.ManyToOne)(function () { return user_entity_1.UserData; }, function (userData) { return userData.shipping; }, {
+            cascade: true,
+        }),
         __metadata("design:type", user_entity_1.UserData)
-    ], Shipping.prototype, "user", void 0);
+    ], Shipping.prototype, "userData", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return orderDetails_entity_1.OrderDetails; }, function (shippingDetails) { return shippingDetails.shippingDetails; }),
+        __metadata("design:type", Array)
+    ], Shipping.prototype, "orderDetails", void 0);
     Shipping = __decorate([
         (0, typeorm_1.Entity)()
     ], Shipping);

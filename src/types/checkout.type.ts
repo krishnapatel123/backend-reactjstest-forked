@@ -7,4 +7,15 @@ export interface checkoutType {
   expiration: string;
   cvvCode: number;
 }
-export type UserRoleType = "credit/debitCard" | "paypal" | "bitcoin"
+export interface getCheckoutType {
+  id: number | null;
+  userData: {
+    id: number,
+    name: string
+  },
+  paymentMethod: string;
+  cardName: string;
+  cardNumber: string;
+  expiration: string;
+  cvvCode: number;
+}

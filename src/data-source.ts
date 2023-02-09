@@ -8,6 +8,8 @@ import { Color } from './entities/color.entity';
 import { Shipping } from "./entities/shipping.entity";
 import { UserData } from "./entities/user.entity";
 import { Checkout } from './entities/checkout.entity';
+import { OrderDetails } from './entities/orderDetails.entity';
+import { OrderItems } from "./entities/orderItems.entity";
 
 export const myDataSource = new DataSource({
   type: "postgres",
@@ -16,7 +18,7 @@ export const myDataSource = new DataSource({
   username: process.env.DB_USER || "postgres",
   password: process.env.DB_PASSWORD || "123",
   database: process.env.DB_DATABASE || "shopping_db",
-  entities: [Gender, Brand, Category, Size, Product, Color, Shipping, UserData, Checkout],
+  entities: [Gender, Brand, Category, Size, Product, Color, Shipping, UserData, Checkout, OrderDetails, OrderItems],
   logging: true,
   synchronize: true,
 })

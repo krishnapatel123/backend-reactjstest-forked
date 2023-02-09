@@ -1,6 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm"
 import { Shipping } from './shipping.entity';
 import { Checkout } from './checkout.entity';
+import { OrderDetails } from "./orderDetails.entity";
 
 @Entity()
 export class UserData {
@@ -10,9 +11,12 @@ export class UserData {
   @Column()
   name: string
 
-  @OneToOne(() => Shipping, (shipping) => shipping.user)
-  shipping: Shipping
+  @OneToMany(() => Shipping, (shipping) => shipping.userData)
+  shipping: Shipping[]
 
-  @OneToOne(() => Checkout, (checkout) => checkout.user)
-  checkout: Checkout
+  @OneToMany(() => Checkout, (checkout) => checkout.userData)
+  checkout: Checkout[]
+
+  @OneToMany(() => OrderDetails, (orderDetails) => orderDetails.userData)
+  orderDetails: OrderDetails[]
 }

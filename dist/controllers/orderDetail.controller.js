@@ -36,47 +36,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCheckout = exports.addCheckout = void 0;
-var data_source_1 = require("../data-source");
-var checkout_entity_1 = require("../entities/checkout.entity");
-var user_entity_1 = require("../entities/user.entity");
-var addCheckout = function (checkoutObject) { return __awaiter(void 0, void 0, void 0, function () {
-    var checkoutRepository, checkout, userRepository, userData, saveObj;
+exports.getOrderDetailsList = exports.addOrderDetails = void 0;
+var orderDetailServices = require("../services/orderDetail.service");
+var addOrderDetails = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var addOrderDetailObj;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                checkoutRepository = data_source_1.myDataSource.getRepository(checkout_entity_1.Checkout);
-                checkout = new checkout_entity_1.Checkout();
-                userRepository = data_source_1.myDataSource.getRepository(user_entity_1.UserData);
-                return [4 /*yield*/, userRepository.findOne({ where: { id: checkoutObject.userId } })];
+            case 0: return [4 /*yield*/, orderDetailServices.addOrderDetails(req.body)];
             case 1:
-                userData = _a.sent();
-                console.log("userid data : ", userData);
-                checkout.userData = userData;
-                checkout.paymentMethod = checkoutObject.paymentMethod;
-                checkout.cardName = checkoutObject.cardName;
-                checkout.cardNumber = checkoutObject.cardNumber;
-                checkout.expiration = checkoutObject.expiration;
-                checkout.cvvCode = checkoutObject.cvvCode;
-                return [4 /*yield*/, checkoutRepository.save(checkout)];
-            case 2:
-                saveObj = _a.sent();
-                return [2 /*return*/, saveObj];
+                addOrderDetailObj = _a.sent();
+                try {
+                    res.status(200).json(addOrderDetailObj);
+                }
+                catch (e) {
+                    res.status(400).json(e.message);
+                }
+                return [2 /*return*/];
         }
     });
 }); };
-exports.addCheckout = addCheckout;
-var getCheckout = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var checkoutRepository, checkoutDetail;
+exports.addOrderDetails = addOrderDetails;
+var getOrderDetailsList = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var orderDetailsList;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                checkoutRepository = data_source_1.myDataSource.getRepository(checkout_entity_1.Checkout);
-                return [4 /*yield*/, checkoutRepository.find({ relations: { userData: true } })];
+            case 0: return [4 /*yield*/, orderDetailServices.getOrderDetails()];
             case 1:
-                checkoutDetail = _a.sent();
-                return [2 /*return*/, checkoutDetail];
+                orderDetailsList = _a.sent();
+                try {
+                    res.status(200).json(orderDetailsList);
+                }
+                catch (e) {
+                    res.status(400).json(e.message);
+                }
+                return [2 /*return*/];
         }
     });
 }); };
-exports.getCheckout = getCheckout;
+exports.getOrderDetailsList = getOrderDetailsList;

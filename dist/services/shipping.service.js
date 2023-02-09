@@ -39,14 +39,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getShipping = exports.addShipping = void 0;
 var data_source_1 = require("../data-source");
 var shipping_entity_1 = require("../entities/shipping.entity");
+var user_entity_1 = require("../entities/user.entity");
 var addShipping = function (shippingObject) { return __awaiter(void 0, void 0, void 0, function () {
-    var shippingRepository, shipping, saveObj;
+    var shippingRepository, shipping, userRepository, userData, obj;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 shippingRepository = data_source_1.myDataSource.getRepository(shipping_entity_1.Shipping);
                 shipping = new shipping_entity_1.Shipping();
-                shipping.userId = shippingObject.userId;
+                userRepository = data_source_1.myDataSource.getRepository(user_entity_1.UserData);
+                return [4 /*yield*/, userRepository.findOne({ where: { id: shippingObject.userId } })];
+            case 1:
+                userData = _a.sent();
+                console.log("userid data : ", userData);
+                shipping.userData = userData;
                 shipping.firstName = shippingObject.firstName;
                 shipping.lastName = shippingObject.lastName;
                 shipping.email = shippingObject.email;
@@ -57,9 +63,9 @@ var addShipping = function (shippingObject) { return __awaiter(void 0, void 0, v
                 shipping.address = shippingObject.address;
                 shipping.zipCode = shippingObject.zipCode;
                 return [4 /*yield*/, shippingRepository.save(shipping)];
-            case 1:
-                saveObj = _a.sent();
-                return [2 /*return*/, saveObj];
+            case 2:
+                obj = _a.sent();
+                return [2 /*return*/, obj];
         }
     });
 }); };
@@ -70,7 +76,7 @@ var getShipping = function () { return __awaiter(void 0, void 0, void 0, functio
         switch (_a.label) {
             case 0:
                 shippingRepository = data_source_1.myDataSource.getRepository(shipping_entity_1.Shipping);
-                return [4 /*yield*/, shippingRepository.find()];
+                return [4 /*yield*/, shippingRepository.find({ relations: { userData: true } })];
             case 1:
                 shippingDetail = _a.sent();
                 return [2 /*return*/, shippingDetail];

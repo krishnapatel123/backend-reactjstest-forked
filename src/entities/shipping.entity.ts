@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from "typeorm"
+import { OrderDetails } from "./orderDetails.entity";
 import { UserData } from "./user.entity";
 
 @Entity()
@@ -8,9 +9,6 @@ export class Shipping {
 
   @Column()
   firstName: string
-
-  @Column()
-  userId: number
 
   @Column()
   lastName: string
@@ -36,7 +34,11 @@ export class Shipping {
   @Column()
   zipCode: string
 
-  @OneToOne(() => UserData, userData => userData.shipping, { cascade: true })
-  @JoinColumn()
-  user: UserData
+  @ManyToOne(() => UserData, userData => userData.shipping, {
+    cascade: true,
+  })
+  userData: UserData
+
+  @OneToMany(() => OrderDetails, (shippingDetails) => shippingDetails.shippingDetails)
+  orderDetails: OrderDetails[]
 }

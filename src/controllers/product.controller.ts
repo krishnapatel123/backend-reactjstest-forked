@@ -1,6 +1,6 @@
 import * as productService from "../services/product.service";
 import { Request, Response } from "express"
-import { productType } from '../types/product.type';
+import { getProductType, productType } from '../types/product.type';
 
 export const addProductDetails = async (req: Request, res: Response) => {
   const addProductList: productType = await productService.addProduct();
@@ -12,7 +12,7 @@ export const addProductDetails = async (req: Request, res: Response) => {
 };
 
 export const getProductList = async (req: Request, res: Response) => {
-  const productList: productType[] = await productService.getAllProductList();
+  const productList: getProductType[] = await productService.getAllProductList();
   try {
     res.status(200).json(productList);
   } catch (e) {

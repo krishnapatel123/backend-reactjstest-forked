@@ -39,6 +39,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllProductList = exports.addProduct = void 0;
 var data_source_1 = require("../data-source");
 var product_entity_1 = require("../entities/product.entity");
+var color_entity_1 = require("../entities/color.entity");
+var size_entity_1 = require("../entities/size.entity");
+var brand_entity_1 = require("../entities/brand.entity");
+var gender_entity_1 = require("../entities/gender.entity");
+var category_entity_1 = require("../entities/category.entity");
 var categoryProductList = [
     {
         productName: "Louis Vouiton active wear",
@@ -249,38 +254,71 @@ var categoryProductList = [
     },
 ];
 var addProduct = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var colorRepo, allColor, allColorIds, sizeRepo, allSize, allSizeIds;
     return __generator(this, function (_a) {
-        console.log("service : ");
-        categoryProductList.map(function (productObj, index) { return __awaiter(void 0, void 0, void 0, function () {
-            var productRepository, product, svaeProduct;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        productRepository = data_source_1.myDataSource.getRepository(product_entity_1.Product);
-                        product = new product_entity_1.Product();
-                        product.name = productObj.productName;
-                        product.imageMedia = productObj.imageSource;
-                        product.currentPrice = productObj.productCurrentPrice;
-                        product.originalPrice = productObj.productOriginalPrice;
-                        product.genderId = productObj.genderId;
-                        product.brandId = productObj.brandId;
-                        product.categoryId = productObj.categoryId;
-                        product.colorId = productObj.colorId;
-                        product.sizeId = productObj.sizeId;
-                        product.isLike = productObj.isLike;
-                        product.isNewArrival = productObj.isNewArrival;
-                        product.description = productObj.productDesc;
-                        product.reviewRate = productObj.reviewRate;
-                        product.imageCollections = productObj.imageCollections;
-                        return [4 /*yield*/, productRepository.save(product)];
-                    case 1:
-                        svaeProduct = _a.sent();
-                        console.log("service product obj : ", product);
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0:
+                colorRepo = data_source_1.myDataSource.getRepository(color_entity_1.Color);
+                return [4 /*yield*/, colorRepo.find({ select: { id: true } })];
+            case 1:
+                allColor = _a.sent();
+                allColorIds = [];
+                allColor.map(function (v) {
+                    allColorIds.push(v.id);
+                });
+                sizeRepo = data_source_1.myDataSource.getRepository(size_entity_1.Size);
+                return [4 /*yield*/, sizeRepo.find({ select: { id: true } })];
+            case 2:
+                allSize = _a.sent();
+                allSizeIds = [];
+                allSize.map(function (v) {
+                    allSizeIds.push(v.id);
+                });
+                categoryProductList.map(function (productObj, index) { return __awaiter(void 0, void 0, void 0, function () {
+                    var productRepository, product, brandRepository, brandData, genderRepository, genderData, categoryRepository, categoryData;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                productRepository = data_source_1.myDataSource.getRepository(product_entity_1.Product);
+                                product = new product_entity_1.Product();
+                                brandRepository = data_source_1.myDataSource.getRepository(brand_entity_1.Brand);
+                                return [4 /*yield*/, brandRepository.findOne({ where: { id: productObj.brandId } })];
+                            case 1:
+                                brandData = _a.sent();
+                                console.log("brand data : ", brandData);
+                                genderRepository = data_source_1.myDataSource.getRepository(gender_entity_1.Gender);
+                                return [4 /*yield*/, genderRepository.findOne({ where: { id: productObj.genderId } })];
+                            case 2:
+                                genderData = _a.sent();
+                                console.log("gender data : ", genderData);
+                                categoryRepository = data_source_1.myDataSource.getRepository(category_entity_1.Category);
+                                return [4 /*yield*/, categoryRepository.findOne({ where: { id: productObj.categoryId } })];
+                            case 3:
+                                categoryData = _a.sent();
+                                console.log("category data : ", categoryData);
+                                product.name = productObj.productName;
+                                product.imageMedia = productObj.imageSource;
+                                product.currentPrice = productObj.productCurrentPrice;
+                                product.originalPrice = productObj.productOriginalPrice;
+                                product.gender = genderData;
+                                product.brand = brandData;
+                                product.category = categoryData;
+                                product.colorId = allColorIds;
+                                product.sizeId = allSizeIds;
+                                product.isLike = productObj.isLike;
+                                product.isNewArrival = productObj.isNewArrival;
+                                product.description = productObj.productDesc;
+                                product.reviewRate = productObj.reviewRate;
+                                product.imageCollections = productObj.imageCollections;
+                                return [4 /*yield*/, productRepository.save(product)];
+                            case 4:
+                                _a.sent();
+                                return [2 /*return*/];
+                        }
+                    });
+                }); });
+                return [2 /*return*/];
+        }
     });
 }); };
 exports.addProduct = addProduct;
@@ -290,9 +328,10 @@ var getAllProductList = function () { return __awaiter(void 0, void 0, void 0, f
         switch (_a.label) {
             case 0:
                 productRepository = data_source_1.myDataSource.getRepository(product_entity_1.Product);
-                return [4 /*yield*/, productRepository.find()];
+                return [4 /*yield*/, productRepository.find({ relations: { brand: true, gender: true, category: true } })];
             case 1:
                 allProduct = _a.sent();
+                console.log("allproduct : ", allProduct);
                 return [2 /*return*/, allProduct];
         }
     });

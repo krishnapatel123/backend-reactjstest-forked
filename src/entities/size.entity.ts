@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm"
-import { Product } from "./product.entity";
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from "typeorm"
+import { OrderItems } from "./orderItems.entity";
 
 @Entity()
 export class Size {
@@ -12,6 +12,6 @@ export class Size {
   @Column()
   value: string
 
-  @OneToMany(() => Product, product => product.size, { onDelete: 'CASCADE' })
-  products: Product[];
+  @OneToOne(() => OrderItems, orderItems => orderItems.size)
+  orderItemDetails: OrderItems;
 }

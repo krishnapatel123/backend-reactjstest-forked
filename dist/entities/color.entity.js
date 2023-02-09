@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Color = void 0;
 var typeorm_1 = require("typeorm");
-var product_entity_1 = require("./product.entity");
+var orderItems_entity_1 = require("./orderItems.entity");
 var Color = /** @class */ (function () {
     function Color() {
     }
@@ -32,11 +32,9 @@ var Color = /** @class */ (function () {
         __metadata("design:type", String)
     ], Color.prototype, "haxCode", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.color; }, {
-            onDelete: 'CASCADE'
-        }),
-        __metadata("design:type", Array)
-    ], Color.prototype, "products", void 0);
+        (0, typeorm_1.OneToOne)(function () { return orderItems_entity_1.OrderItems; }, function (orderItems) { return orderItems.color; }),
+        __metadata("design:type", orderItems_entity_1.OrderItems)
+    ], Color.prototype, "orderItemDetails", void 0);
     Color = __decorate([
         (0, typeorm_1.Entity)()
     ], Color);

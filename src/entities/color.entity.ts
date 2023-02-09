@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm"
-import { Product } from "./product.entity";
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from "typeorm"
+import { OrderItems } from './orderItems.entity';
 
 @Entity()
 export class Color {
@@ -15,8 +15,6 @@ export class Color {
   @Column()
   haxCode: string
 
-  @OneToMany(() => Product, product => product.color, {
-    onDelete: 'CASCADE'
-  })
-  products: Product[];
+  @OneToOne(() => OrderItems, orderItems => orderItems.color)
+  orderItemDetails: OrderItems;
 }

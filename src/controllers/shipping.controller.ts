@@ -1,6 +1,6 @@
 import * as shippingService from "../services/shipping.service";
 import { Request, Response } from "express"
-import { shippingType } from '../types/shipping.type';
+import { getShippingType, shippingType } from '../types/shipping.type';
 
 export const addShippingDetails = async (req: Request, res: Response) => {
   console.log("req.body in shipping controller : ", req.body);
@@ -14,7 +14,7 @@ export const addShippingDetails = async (req: Request, res: Response) => {
 };
 
 export const getShippingDetails = async (req: Request, res: Response) => {
-  const shippingList: shippingType[] = await shippingService.getShipping();
+  const shippingList: getShippingType[] = await shippingService.getShipping();
   try {
     res.status(200).json(shippingList);
   } catch (e) {

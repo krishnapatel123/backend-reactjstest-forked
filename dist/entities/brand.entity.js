@@ -28,7 +28,7 @@ var Brand = /** @class */ (function () {
         __metadata("design:type", String)
     ], Brand.prototype, "value", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.brand; }, { onDelete: 'CASCADE' }),
+        (0, typeorm_1.OneToMany)(function () { return product_entity_1.Product; }, function (product) { return product.brand; }),
         __metadata("design:type", Array)
     ], Brand.prototype, "products", void 0);
     Brand = __decorate([
