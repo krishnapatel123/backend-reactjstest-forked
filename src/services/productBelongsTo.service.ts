@@ -1,46 +1,28 @@
 import { myDataSource } from '../data-source';
 import { Product } from '../entities/product.entity';
+import { ProductBelongsTo } from '../entities/productBelongsTo.entity';
 import { productsType } from '../types/products.type';
+import { productBelongsToList } from '../data/productBelongsToLists';
+export const getAllProductBelongsToList = async (): Promise<any> => {
 
-export const getAllProductList = async (): Promise<Product[]> => {
+  const productRepository = myDataSource.getRepository(ProductBelongsTo)
 
-  const productRepository = myDataSource.getRepository(Product)
-
-  // productLists.map(async (p) => {
-  //   const product = new Product();
-  //   product.productName = p.productName;
-  //   product.productImages = p.productImages;
-  //   product.productDescription = p.productDescription;
-  //   product.productOriginalPrice = p.productOriginalPrice;
-  //   product.productCurrentPrice = p.productCurrentPrice;
-  //   product.gender = p.genderId as never;
-  //   product.category = p.category as never;
-  //   product.brand = p.brand as never;
-  //   product.size = p.size;
-  //   product.color = p.color;
-  //   product.reviewRate = p.reviewRate;
-  //   product.slug = p.slug;
-  //   let data = await productRepository.save(product);
-  //   return data;
+  // productBelongsToList.map((p) => {
+  //   const pro = new ProductBelongsTo();
+  //   pro.type = p.type;
+  //   pro.products = p.productId as never
+  //   return productRepository.save(pro);
   // })
-  // return;
-  return productRepository.find({ relations: { brand: true, gender: true, category: true } })
+  let d = productRepository.find({ relations: { products: true } });
+  console.log("d length : ", (await d).length);
+  return d;
+  // return productRepository.find({ relations: { products: true } })
 }
 
-export const addProduct = async (productObj: productsType): Promise<Product> => {
-  const productRepository = myDataSource.getRepository(Product)
-  const product = new Product();
-  product.productName = productObj.productName;
-  product.productImages = productObj.productImages;
-  product.productDescription = productObj.productDescription;
-  product.productOriginalPrice = productObj.productOriginalPrice;
-  product.productCurrentPrice = productObj.productCurrentPrice;
-  product.gender = productObj.genderId as never;
-  product.category = productObj.category as never;
-  product.brand = productObj.brand as never;
-  product.size = productObj.size;
-  product.color = productObj.color;
-  product.reviewRate = productObj.reviewRate;
-  product.slug = productObj.slug;
-  return productRepository.save(product);
-}
+// export const addProductBelongsToList = async (productObj: { type: number, productId: number }): Promise<ProductBelongsTo> => {
+//   const productRepository = myDataSource.getRepository(ProductBelongsTo)
+//   const product = new ProductBelongsTo();
+//   product.type = productObj.type;
+//   product.products = productObj.productId as never;
+//   return productRepository.save(product);
+// }

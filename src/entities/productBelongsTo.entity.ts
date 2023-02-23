@@ -1,17 +1,20 @@
-import { Entity, PrimaryGeneratedColumn, OneToMany, Column, OneToOne, ManyToMany, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, OneToMany, Column, OneToOne, ManyToMany, ManyToOne, JoinColumn } from "typeorm"
 import { Product } from './product.entity';
 
 enum productBelongsToType {
-  checkoutNewArrivals,
-  bestDeal,
-  bestSeller
+  checkoutNewArrivals = 1,
+  bestDeal = 2,
+  bestSeller = 3
 }
 @Entity()
 export class ProductBelongsTo {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Column('int')
+  @Column({
+    type: "enum",
+    enum: productBelongsToType,
+  })
   type: productBelongsToType
 
   @ManyToOne(() => Product, products => products.productBelongsTo)

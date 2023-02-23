@@ -1,10 +1,12 @@
 import { myDataSource } from '../data-source';
+import { productLists } from '../data/productLists';
 import { Product } from '../entities/product.entity';
 import { productsType } from '../types/products.type';
 
 export const getAllProductList = async (): Promise<Product[]> => {
 
   const productRepository = myDataSource.getRepository(Product)
+  console.log("productlist length : ", productLists.length);
 
   // productLists.map(async (p) => {
   //   const product = new Product();

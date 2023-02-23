@@ -60,6 +60,7 @@ export const getOrderDetails = async (): Promise<OrderDetails> => {
       "orderItemDetails.color",
       "color"
     )
+    // .where({OrderDetails:"orderDetai"})
     .getOne()
 
 
