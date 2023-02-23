@@ -10,8 +10,8 @@ export class Brand {
   name: string
 
   @Column()
-  value: string
+  slug: string
 
-  @OneToMany(() => Product, product => product.brand)
+  @OneToMany(() => Product, product => product.brand, { onDelete: 'CASCADE' })
   products: Product[]
 }

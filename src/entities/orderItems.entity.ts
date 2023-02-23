@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm"
 import { OrderDetails } from './orderDetails.entity';
 import { Product } from "./product.entity";
 import { Color } from './color.entity';
@@ -11,21 +11,6 @@ export class OrderItems {
 
   @Column({ default: 1 })
   quantity: number;
-
-  // @Column('simple-json', { nullable: true })
-  // color: {
-  //   id: number;
-  //   name: string;
-  //   value: string;
-  //   haxCode: string;
-  // };
-
-  // @Column('simple-json', { nullable: true })
-  // size: {
-  //   id: number;
-  //   name: string;
-  //   value: string;
-  // };
 
   @ManyToOne(() => OrderDetails, (orderDetails) => orderDetails.orderItemDetails, {
     cascade: true,

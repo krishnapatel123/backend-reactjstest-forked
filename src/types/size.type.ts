@@ -1,4 +1,5 @@
 export interface sizeType {
-  id: number | null;
-  name: string;
+  id: number
+  name: string
+  value: string
 }

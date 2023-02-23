@@ -11,6 +11,7 @@ const main = () => {
     .initialize()
     .then(() => {
       console.log('Data Source has been initialized!')
+      app.listen(3001)
     })
     .catch((err) => {
       console.error('Error during Data Source initialization:', err)
@@ -24,6 +25,5 @@ const main = () => {
   app.use(bodyParser.json());
   app.use(express.json())
   app.use('/api', indexRoute)
-  app.listen(3001)
 }
 main()

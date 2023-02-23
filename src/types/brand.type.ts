@@ -1,4 +1,5 @@
 export interface brandType {
-  id: number | null;
-  name: string;
+  id: number
+  name: string
+  slug: string
 }

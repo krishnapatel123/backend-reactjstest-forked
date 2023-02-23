@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from "typeorm"
 import { OrderDetails } from "./orderDetails.entity";
 import { UserData } from "./user.entity";
 
@@ -37,8 +37,9 @@ export class Shipping {
   @ManyToOne(() => UserData, userData => userData.shipping, {
     cascade: true,
   })
+  @JoinColumn({ name: 'userData' })
   userData: UserData
 
-  @OneToMany(() => OrderDetails, (shippingDetails) => shippingDetails.shippingDetails)
+  @OneToMany(() => OrderDetails, (shippingDetails) => shippingDetails.shippingDetails, { onDelete: 'CASCADE' })
   orderDetails: OrderDetails[]
 }

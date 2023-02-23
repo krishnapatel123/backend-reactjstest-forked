@@ -1,5 +1,5 @@
 import { myDataSource } from '../data-source';
-import { checkoutType, getCheckoutType } from '../types/checkout.type';
+import { checkoutType } from '../types/checkout.type';
 import { Checkout } from '../entities/checkout.entity';
 import { UserData } from '../entities/user.entity';
 
@@ -7,22 +7,22 @@ export const addCheckout = async (checkoutObject: checkoutType) => {
 
   const checkoutRepository = myDataSource.getRepository(Checkout)
   const checkout = new Checkout();
+  try {
+    checkout.userData = checkoutObject.userId as never
+    checkout.paymentMethod = checkoutObject.paymentMethod
+    checkout.cardName = checkoutObject.cardName
+    checkout.cardNumber = checkoutObject.cardNumber
+    checkout.expiration = checkoutObject.expiration
+    checkout.cvvCode = checkoutObject.cvvCode
+    return checkoutRepository.save(checkout)
+  } catch (error) {
+    console.log("error : ", error);
 
-  const userRepository = myDataSource.getRepository(UserData)
-  const userData = await userRepository.findOne({ where: { id: checkoutObject.userId } })
-
-  checkout.userData = userData
-  checkout.paymentMethod = checkoutObject.paymentMethod
-  checkout.cardName = checkoutObject.cardName
-  checkout.cardNumber = checkoutObject.cardNumber
-  checkout.expiration = checkoutObject.expiration
-  checkout.cvvCode = checkoutObject.cvvCode
-  const saveObj = await checkoutRepository.save(checkout)
-  return saveObj;
+    return error.message;
+  }
 }
 
-export const getCheckout = async (): Promise<getCheckoutType[]> => {
+export const getCheckout = async (): Promise<Checkout[]> => {
   const checkoutRepository = myDataSource.getRepository(Checkout)
-  const checkoutDetail = await checkoutRepository.find({ relations: { userData: true } })
-  return checkoutDetail;
+  return checkoutRepository.find({ relations: { userData: true } })
 }

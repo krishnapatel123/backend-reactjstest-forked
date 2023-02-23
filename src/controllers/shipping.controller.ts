@@ -1,9 +1,9 @@
 import * as shippingService from "../services/shipping.service";
 import { Request, Response } from "express"
-import { afterAddShippingType, getShippingType } from '../types/shipping.type';
+import { Shipping } from '../entities/shipping.entity';
 
 export const addShippingDetails = async (req: Request, res: Response) => {
-  const addProductList: afterAddShippingType = await shippingService.addShipping(req.body);
+  const addProductList: Shipping = await shippingService.addShipping(req.body);
   try {
     res.status(200).json(addProductList);
   } catch (e) {
@@ -12,7 +12,7 @@ export const addShippingDetails = async (req: Request, res: Response) => {
 };
 
 export const getShippingDetails = async (req: Request, res: Response) => {
-  const shippingList: getShippingType[] = await shippingService.getShipping();
+  const shippingList: Shipping[] = await shippingService.getShipping();
   try {
     res.status(200).json(shippingList);
   } catch (e) {

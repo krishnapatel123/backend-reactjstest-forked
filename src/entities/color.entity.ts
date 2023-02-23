@@ -1,5 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToMany, ManyToOne, OneToMany } from "typeorm"
+import { CartItems } from "./cartItems.entity";
 import { OrderItems } from './orderItems.entity';
+import { Product } from "./product.entity";
 
 @Entity()
 export class Color {
@@ -10,11 +12,11 @@ export class Color {
   name: string
 
   @Column()
-  value: string
+  haxValue: string
 
-  @Column()
-  haxCode: string
+  @OneToMany(() => OrderItems, orderItems => orderItems.color, { onDelete: 'CASCADE' })
+  orderItemDetails: OrderItems[];
 
-  @OneToOne(() => OrderItems, orderItems => orderItems.color)
-  orderItemDetails: OrderItems;
+  @OneToOne(() => CartItems, cartItems => cartItems.color)
+  cartItems: CartItems
 }

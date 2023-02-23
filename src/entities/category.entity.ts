@@ -10,8 +10,8 @@ export class Category {
   name: string
 
   @Column()
-  value: string
+  slug: string
 
-  @OneToMany(() => Product, product => product.category)
+  @OneToMany(() => Product, product => product.category, { onDelete: 'CASCADE' })
   products: Product[];
 }

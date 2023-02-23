@@ -10,8 +10,8 @@ export class Gender {
   name: string
 
   @Column()
-  value: string
+  slug: string
 
-  @OneToMany(() => Product, product => product.gender)
+  @OneToMany(() => Product, product => product.gender, { onDelete: 'CASCADE' })
   products: Product[];
 }

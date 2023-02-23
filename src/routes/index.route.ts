@@ -7,6 +7,7 @@ import colorRoute from './color.route';
 import shippingRoute from './shipping.route';
 import checkoutRoute from './checkout.route';
 import orderDetailRoute from './orderDetail.route';
+import cartRoute from './cart.route';
 import * as express from 'express';
 
 const router = express.Router();
@@ -20,5 +21,6 @@ router.use('/product', productRoute)
 router.use('/shipping', shippingRoute)
 router.use('/checkout', checkoutRoute)
 router.use('/orderDetail', orderDetailRoute)
+router.use('/cart', cartRoute)
 
 export default router;

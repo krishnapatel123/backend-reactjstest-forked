@@ -1,9 +1,9 @@
 import * as checkoutServices from "../services/checkout.service";
 import { Request, Response } from "express"
-import { afterAddCheckoutType, getCheckoutType } from '../types/checkout.type';
+import { Checkout } from '../entities/checkout.entity';
 
 export const addCheckoutDetails = async (req: Request, res: Response) => {
-  const addcheckout: afterAddCheckoutType = await checkoutServices.addCheckout(req.body);
+  const addcheckout: Checkout = await checkoutServices.addCheckout(req.body);
   try {
     res.status(200).json(addcheckout);
   } catch (e) {
@@ -12,7 +12,7 @@ export const addCheckoutDetails = async (req: Request, res: Response) => {
 };
 
 export const getCheckoutDetails = async (req: Request, res: Response) => {
-  const checkoutDetails: getCheckoutType[] = await checkoutServices.getCheckout();
+  const checkoutDetails: Checkout[] = await checkoutServices.getCheckout();
   try {
     res.status(200).json(checkoutDetails);
   } catch (e) {

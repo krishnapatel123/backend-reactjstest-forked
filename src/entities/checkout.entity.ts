@@ -16,7 +16,7 @@ export class Checkout {
   @Column()
   cardNumber: string
 
-  @Column({ type: 'date' })
+  @Column()
   expiration: string
 
   @Column()
@@ -25,7 +25,7 @@ export class Checkout {
   @ManyToOne(() => UserData, userData => userData.checkout, {
     cascade: true,
   })
-  @JoinColumn()
+  @JoinColumn({ name: 'userData' })
   userData: UserData
 
   @OneToMany(() => OrderDetails, (orderDetails) => orderDetails.checkoutDetails)
