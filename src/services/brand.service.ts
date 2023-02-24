@@ -15,5 +15,13 @@ export const getAllBrandList = async (): Promise<brandType[]> => {
   //   await brandRepository.save(brand);
   // })
 
+  //insert user
+  // const brandRepository = myDataSource.getRepository(UserData)
+  // const u = new UserData();
+  // u.userName = 'krishnaPatel9104';
+  // u.password = 'krishil9104';
+  // await brandRepository.save(u);
+  // return;
+
   return brandRepository.find()
 }

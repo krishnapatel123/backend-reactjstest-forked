@@ -7,7 +7,7 @@ export const addShipping = async (shippingObject: shippingType) => {
   const shippingRepository = myDataSource.getRepository(Shipping)
   const shipping = new Shipping();
   try {
-    shipping.userData = shippingObject.userId as never
+    shipping.userData = shippingObject.userId
     shipping.firstName = shippingObject.firstName
     shipping.lastName = shippingObject.lastName
     shipping.email = shippingObject.email

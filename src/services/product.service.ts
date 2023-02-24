@@ -15,13 +15,14 @@ export const getAllProductList = async (): Promise<Product[]> => {
   //   product.productDescription = p.productDescription;
   //   product.productOriginalPrice = p.productOriginalPrice;
   //   product.productCurrentPrice = p.productCurrentPrice;
-  //   product.gender = p.genderId as never;
-  //   product.category = p.category as never;
-  //   product.brand = p.brand as never;
+  //   product.gender = p.gender;
+  //   product.category = p.category;
+  //   product.brand = p.brand;
   //   product.size = p.size;
   //   product.color = p.color;
   //   product.reviewRate = p.reviewRate;
   //   product.slug = p.slug;
+  //   product.type = p.type;
   //   let data = await productRepository.save(product);
   //   return data;
   // })
@@ -37,12 +38,13 @@ export const addProduct = async (productObj: productsType): Promise<Product> => 
   product.productDescription = productObj.productDescription;
   product.productOriginalPrice = productObj.productOriginalPrice;
   product.productCurrentPrice = productObj.productCurrentPrice;
-  product.gender = productObj.genderId as never;
-  product.category = productObj.category as never;
-  product.brand = productObj.brand as never;
+  product.gender = productObj.gender;
+  product.category = productObj.category;
+  product.brand = productObj.brand;
   product.size = productObj.size;
   product.color = productObj.color;
   product.reviewRate = productObj.reviewRate;
   product.slug = productObj.slug;
+  product.type = productObj.type;
   return productRepository.save(product);
 }

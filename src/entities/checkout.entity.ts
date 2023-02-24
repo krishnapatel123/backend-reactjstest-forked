@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToMany, ManyToOne } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToMany, ManyToOne, OneToOne } from "typeorm"
 import { OrderDetails } from "./orderDetails.entity";
 import { UserData } from "./user.entity";
 
@@ -23,11 +23,10 @@ export class Checkout {
   cvvCode: number
 
   @ManyToOne(() => UserData, userData => userData.checkout, {
-    cascade: true,
+    onDelete: "CASCADE",
   })
-  @JoinColumn({ name: 'userData' })
-  userData: UserData
+  userData: UserData | number
 
-  @OneToMany(() => OrderDetails, (orderDetails) => orderDetails.checkoutDetails)
-  orderDetails: OrderDetails[]
+  @OneToOne(() => OrderDetails, (orderDetails) => orderDetails.checkoutDetail)
+  orderDetail: OrderDetails
 }

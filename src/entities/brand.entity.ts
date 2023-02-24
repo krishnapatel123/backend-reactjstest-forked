@@ -12,6 +12,6 @@ export class Brand {
   @Column()
   slug: string
 
-  @OneToMany(() => Product, product => product.brand, { onDelete: 'CASCADE' })
+  @OneToMany(() => Product, product => product.brand)
   products: Product[]
 }

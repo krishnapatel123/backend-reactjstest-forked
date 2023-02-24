@@ -21,9 +21,9 @@ export class UserData {
   @OneToMany(() => Checkout, (checkout) => checkout.userData)
   checkout: Checkout[]
 
+  @OneToMany(() => Cart, cart => cart.userData)
+  cart: Cart[]
+
   @OneToMany(() => OrderDetails, (orderDetails) => orderDetails.userData)
   orderDetails: OrderDetails[]
-
-  @OneToOne(() => Cart, cart => cart.userData)
-  cart: Cart
 }

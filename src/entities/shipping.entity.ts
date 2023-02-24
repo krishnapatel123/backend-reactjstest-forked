@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn, OneToOne } from "typeorm"
 import { OrderDetails } from "./orderDetails.entity";
 import { UserData } from "./user.entity";
 
@@ -35,11 +35,10 @@ export class Shipping {
   zipCode: string
 
   @ManyToOne(() => UserData, userData => userData.shipping, {
-    cascade: true,
+    onDelete: "CASCADE",
   })
-  @JoinColumn({ name: 'userData' })
-  userData: UserData
+  userData: UserData | number
 
-  @OneToMany(() => OrderDetails, (shippingDetails) => shippingDetails.shippingDetails, { onDelete: 'CASCADE' })
-  orderDetails: OrderDetails[]
+  @OneToOne(() => OrderDetails, (shippingDetails) => shippingDetails.shippingDetail)
+  orderDetail: OrderDetails
 }

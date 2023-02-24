@@ -14,9 +14,6 @@ export class Size {
   @Column()
   value: string
 
-  @OneToMany(() => OrderItems, orderItems => orderItems.size)
-  orderItemDetails: OrderItems[];
-
-  @OneToOne(() => CartItems, cartItems => cartItems.size)
-  cartItems: CartItems
+  // @OneToMany(() => OrderItems, orderItems => orderItems.size)
+  // orderItemDetails: OrderItems[];
 }

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, OneToOne, OneToMany, JoinColumn, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, OneToOne, OneToMany, JoinColumn, ManyToOne, Column, ManyToMany } from "typeorm"
 import { Cart } from "./cart.entity";
 import { Product } from './product.entity';
 import { Size } from "./size.entity";
@@ -9,17 +9,20 @@ export class CartItems {
   @PrimaryGeneratedColumn()
   id: number
 
+  @Column()
+  quantity: number;
+
+  @Column()
+  size: number;
+
+  @Column()
+  color: number;
+
   @ManyToOne(() => Product, products => products.cartItems)
-  products: Product;
+  products: Product | number;
 
-  @OneToOne(() => Size, size => size.cartItems)
-  @JoinColumn()
-  size: Size;
-
-  @OneToOne(() => Color, color => color.cartItems)
-  @JoinColumn()
-  color: Color;
-
-  @OneToOne(() => Cart, cart => cart.cartItems)
-  cart: Cart
+  @ManyToOne(() => Cart, cart => cart.cartItems, {
+    onDelete: "CASCADE"
+  })
+  cart: Cart | number
 }

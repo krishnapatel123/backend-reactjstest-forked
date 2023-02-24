@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany } from "typeorm"
 import { OrderDetails } from './orderDetails.entity';
 import { Product } from "./product.entity";
 import { Color } from './color.entity';
@@ -12,23 +12,17 @@ export class OrderItems {
   @Column({ default: 1 })
   quantity: number;
 
+  @Column()
+  size: number;
+
+  @Column()
+  color: number;
+
   @ManyToOne(() => OrderDetails, (orderDetails) => orderDetails.orderItemDetails, {
-    cascade: true,
+    onDelete: "CASCADE",
   })
-  orderDetails: OrderDetails
+  orderDetail: OrderDetails
 
-  @ManyToOne(() => Product, (product) => product.orderItemDetails, {
-    cascade: true,
-  })
-  product: Product
-
-  @ManyToOne(() => Color, (color) => color.orderItemDetails, {
-    cascade: true,
-  })
-  color: Color
-
-  @ManyToOne(() => Size, (size) => size.orderItemDetails, {
-    cascade: true,
-  })
-  size: Size
+  @ManyToMany(() => Product, (product) => product.orderItemDetails)
+  products: Product[]
 }

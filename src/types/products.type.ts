@@ -5,11 +5,12 @@ export interface productsType {
   productDescription: string[]
   productOriginalPrice: number
   productCurrentPrice: number
-  genderId: number
+  gender: number
   category: number
   brand: number
   size: number[]
   color: number[]
   reviewRate: number,
-  slug: string
+  slug: string,
+  type: number
 }

@@ -12,7 +12,7 @@ export const addOrderDetails = async (req: Request, res: Response) => {
 };
 
 export const getOrderDetailsList = async (req: Request, res: Response) => {
-  const orderDetailsList = await orderDetailServices.getOrderDetails();
+  const orderDetailsList = await orderDetailServices.getOrderDetails(req.params.userId);
   try {
     res.status(200).json(orderDetailsList);
   } catch (e) {

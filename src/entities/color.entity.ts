@@ -14,9 +14,6 @@ export class Color {
   @Column()
   haxValue: string
 
-  @OneToMany(() => OrderItems, orderItems => orderItems.color, { onDelete: 'CASCADE' })
-  orderItemDetails: OrderItems[];
-
-  @OneToOne(() => CartItems, cartItems => cartItems.color)
-  cartItems: CartItems
+  // @OneToMany(() => OrderItems, orderItems => orderItems.color, { onDelete: 'CASCADE' })
+  // orderItemDetails: OrderItems[];
 }

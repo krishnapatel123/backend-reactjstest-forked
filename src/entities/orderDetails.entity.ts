@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, OneToMany } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, OneToMany, UpdateDateColumn, OneToOne } from "typeorm"
 import { UserData } from "./user.entity";
 import { Shipping } from "./shipping.entity";
 import { Checkout } from "./checkout.entity";
@@ -18,21 +18,20 @@ export class OrderDetails {
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   created_At: Date;
 
+  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
+  updated_At: Date;
+
   @ManyToOne(() => UserData, (userData) => userData.orderDetails, {
-    cascade: true,
+    onDelete: "CASCADE",
   })
   userData: UserData
 
-  @ManyToOne(() => Shipping, (shippingDetails) => shippingDetails.orderDetails, {
-    cascade: true,
-  })
-  shippingDetails: Shipping
+  @OneToOne(() => Shipping, (shippingDetails) => shippingDetails.orderDetail)
+  shippingDetail: Shipping
 
-  @ManyToOne(() => Checkout, (checkoutDetails) => checkoutDetails.orderDetails, {
-    cascade: true,
-  })
-  checkoutDetails: Checkout
+  @OneToOne(() => Checkout, (checkoutDetails) => checkoutDetails.orderDetail)
+  checkoutDetail: Checkout
 
-  @OneToMany(() => OrderItems, (orderItemDetails) => orderItemDetails.orderDetails)
+  @OneToMany(() => OrderItems, (orderItemDetails) => orderItemDetails.orderDetail)
   orderItemDetails: OrderItems[]
 }

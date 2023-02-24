@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany, ManyToOne, Column } from "typeorm"
 import { CartItems } from "./cartItems.entity";
 import { UserData } from "./user.entity";
 
@@ -7,11 +7,12 @@ export class Cart {
   @PrimaryGeneratedColumn()
   id: number
 
-  @OneToOne(() => UserData, userData => userData.cart)
-  @JoinColumn()
+  @ManyToOne(() => UserData, userData => userData.cart)
   userData: UserData;
 
-  @OneToOne(() => CartItems, cartItems => cartItems.cart)
-  @JoinColumn()
-  cartItems: CartItems;
+  @Column()
+  userDataId: Number;
+
+  @OneToMany(() => CartItems, cartItems => cartItems.cart)
+  cartItems: CartItems[];
 }

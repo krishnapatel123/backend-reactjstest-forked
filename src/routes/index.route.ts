@@ -8,7 +8,6 @@ import shippingRoute from './shipping.route';
 import checkoutRoute from './checkout.route';
 import orderDetailRoute from './orderDetail.route';
 import cartRoute from './cart.route';
-import productBelongsTo from './productBelongsTo.route';
 import * as express from 'express';
 
 const router = express.Router();
@@ -23,6 +22,5 @@ router.use('/shipping', shippingRoute)
 router.use('/checkout', checkoutRoute)
 router.use('/orderDetail', orderDetailRoute)
 router.use('/cart', cartRoute)
-router.use('/product_belongs_to', productBelongsTo)
 
 export default router;

@@ -1,6 +1,7 @@
-// import { getColorList } from '../controllers/color.controller';
+import { addProductToCartDetails, getAddToCartList } from '../controllers/cart.controller';
 const express = require("express");
 const router = express.Router();
 
-// router.get('/', getColorList)
+router.get('/:userId', getAddToCartList)
+router.post('/add', addProductToCartDetails)
 export default router;

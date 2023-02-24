@@ -8,7 +8,7 @@ export const addCheckout = async (checkoutObject: checkoutType) => {
   const checkoutRepository = myDataSource.getRepository(Checkout)
   const checkout = new Checkout();
   try {
-    checkout.userData = checkoutObject.userId as never
+    checkout.userData = checkoutObject.userId
     checkout.paymentMethod = checkoutObject.paymentMethod
     checkout.cardName = checkoutObject.cardName
     checkout.cardNumber = checkoutObject.cardNumber

@@ -6,7 +6,13 @@ import { OrderItems } from './orderItems.entity';
 import { Size } from './size.entity';
 import { Color } from "./color.entity";
 import { CartItems } from './cartItems.entity';
-import { ProductBelongsTo } from "./productBelongsTo.entity";
+
+export enum productBelongsToType {
+  checkoutNewArrivals = 1,
+  bestDeal = 2,
+  bestSeller = 3,
+  none = 4
+}
 
 @Entity()
 export class Product {
@@ -35,22 +41,19 @@ export class Product {
   productCurrentPrice: number
 
   @ManyToOne(() => Gender, (gender) => gender.products, {
-    cascade: true,
+    onDelete: "CASCADE",
   })
-  @JoinColumn({ name: 'gender' })
-  gender: Gender
+  gender: Gender | number
 
   @ManyToOne(() => Category, (category) => category.products, {
-    cascade: true,
+    onDelete: "CASCADE",
   })
-  @JoinColumn({ name: 'category' })
-  category: Category
+  category: Category | number
 
   @ManyToOne(() => Brand, (brand) => brand.products, {
-    cascade: true,
+    onDelete: "CASCADE",
   })
-  @JoinColumn({ name: 'brand' })
-  brand: Brand
+  brand: Brand | number
 
   @Column('simple-array', { nullable: false })
   size: number[];
@@ -67,15 +70,15 @@ export class Product {
   @Column()
   slug: string
 
-  @OneToMany(() => OrderItems, (orderItemDetails) => orderItemDetails.product, { onDelete: 'CASCADE' })
+  @Column({
+    type: "enum",
+    enum: productBelongsToType,
+  })
+  type: productBelongsToType
+
+  @ManyToMany(() => OrderItems, (orderItemDetails) => orderItemDetails.products)
   orderItemDetails: OrderItems[]
 
-  @OneToMany(() => ProductBelongsTo, (productBelongsTo) => productBelongsTo.products, { onDelete: 'CASCADE' })
-  productBelongsTo: ProductBelongsTo[]
-
-  @OneToMany(() => CartItems, (cartItems) => cartItems.products, { onDelete: 'CASCADE' })
+  @OneToMany(() => CartItems, (cartItems) => cartItems.products)
   cartItems: CartItems[]
-  genderId: number;
-  categoryId: number;
-  brandId: number;
 }

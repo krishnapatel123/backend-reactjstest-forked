@@ -14,13 +14,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 4,
     brand: 4,
     size: [2, 4],
     color: [1, 3, 5],
     reviewRate: 3,
-    slug: 'louisvouitonactivewear'
+    slug: 'louisvouitonactivewear',
+    type: 2
   },
   {
     id: 2,
@@ -36,13 +37,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 3,
     brand: 3,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 3,
-    slug: 'oceanbluering'
+    slug: 'oceanbluering',
+    type: 2
   },
   {
     id: 3,
@@ -58,13 +60,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 350,
     productCurrentPrice: 270,
-    genderId: 2,
+    gender: 2,
     category: 2,
     brand: 2,
     size: [2, 3, 4],
     color: [2, 5],
     reviewRate: 3,
-    slug: 'brownleatheredwallet'
+    slug: 'brownleatheredwallet',
+    type: 2
   },
   {
     id: 4,
@@ -80,13 +83,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 590,
     productCurrentPrice: 420,
-    genderId: 2,
+    gender: 2,
     category: 9,
     brand: 9,
     size: [2, 4],
     color: [2, 3],
     reviewRate: 3,
-    slug: 'brownleatheredwallet'
+    slug: 'brownleatheredwallet',
+    type: 2
   },
   {
     id: 5,
@@ -102,13 +106,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 350,
     productCurrentPrice: 270,
-    genderId: 2,
+    gender: 2,
     category: 2,
     brand: 2,
     size: [2, 3, 4],
     color: [2, 5],
     reviewRate: 3,
-    slug: 'brownleatheredwallet'
+    slug: 'brownleatheredwallet',
+    type: 2
   },
   {
     id: 6,
@@ -124,13 +129,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 2,
     brand: 2,
     size: [2, 4, 5],
     color: [3, 5],
     reviewRate: 3,
-    slug: 'marieclairehandbag'
+    slug: 'marieclairehandbag',
+    type: 3
   },
   {
     id: 7,
@@ -146,13 +152,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 3,
     brand: 3,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 3,
-    slug: 'redgemearrings'
+    slug: 'redgemearrings',
+    type: 3
   },
   {
     id: 8,
@@ -168,13 +175,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 350,
     productCurrentPrice: 270,
-    genderId: 2,
+    gender: 2,
     category: 9,
     brand: 9,
     size: [3, 4],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'brownleatheredwallet'
+    slug: 'brownleatheredwallet',
+    type: 3
   },
   {
     id: 9,
@@ -190,13 +198,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 590,
     productCurrentPrice: 420,
-    genderId: 1,
+    gender: 1,
     category: 3,
     brand: 3,
     size: [2, 5],
     color: [3, 4],
     reviewRate: 2,
-    slug: 'earning'
+    slug: 'earning',
+    type: 3
   },
   {
     id: 10,
@@ -212,13 +221,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 3,
     brand: 3,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 3,
-    slug: 'redgemearrings'
+    slug: 'redgemearrings',
+    type: 3
   },
   {
     id: 11,
@@ -234,13 +244,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 1,
     brand: 1,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 3,
-    slug: 'redgemearrings'
+    slug: 'redgemearrings',
+    type: 1
   },
   {
     id: 12,
@@ -256,13 +267,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 1,
     brand: 1,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'redgemearrings'
+    slug: 'redgemearrings',
+    type: 1
   },
   {
     id: 13,
@@ -278,13 +290,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 1,
     brand: 1,
     size: [2],
     color: [5],
     reviewRate: 4,
-    slug: 'redgemearrings'
+    slug: 'redgemearrings',
+    type: 1
   },
   {
     id: 14,
@@ -300,13 +313,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 1,
     brand: 1,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'redgemearrings'
+    slug: 'redgemearrings',
+    type: 1
   },
   {
     id: 15,
@@ -322,13 +336,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 4,
     brand: 4,
     size: [1, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'santiagobloodwhite'
+    slug: 'santiagobloodwhite',
+    type: 1
   },
   {
     id: 16,
@@ -344,13 +359,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 4,
     brand: 4,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'salomonlightning-blue'
+    slug: 'salomonlightning-blue',
+    type: 4
   },
   {
     id: 17,
@@ -366,13 +382,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 4,
     brand: 4,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'salomonlightning-blue'
+    slug: 'salomonlightning-blue',
+    type: 4
   },
   {
     id: 18,
@@ -388,13 +405,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 4,
     brand: 4,
     size: [1, 2],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'salomonlightning-blue'
+    slug: 'salomonlightning-blue',
+    type: 4
   },
   {
     id: 19,
@@ -410,13 +428,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 4,
     brand: 4,
     size: [4, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'salomonlightning-blue'
+    slug: 'salomonlightning-blue',
+    type: 4
   },
   {
     id: 20,
@@ -432,13 +451,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 8,
     brand: 9,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 21,
@@ -454,13 +474,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 8,
     brand: 9,
     size: [1, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 22,
@@ -476,13 +497,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 8,
     brand: 9,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 23,
@@ -498,13 +520,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 8,
     brand: 9,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 1
   },
   {
     id: 24,
@@ -520,13 +543,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 8,
     brand: 9,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 25,
@@ -542,13 +566,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 7,
     brand: 8,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 26,
@@ -564,13 +589,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 7,
     brand: 8,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 27,
@@ -586,13 +612,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 7,
     brand: 8,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 28,
@@ -608,13 +635,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 7,
     brand: 8,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 29,
@@ -630,13 +658,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 7,
     brand: 8,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 30,
@@ -652,13 +681,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 2,
     brand: 2,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 31,
@@ -674,13 +704,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 2,
     brand: 2,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 32,
@@ -696,13 +727,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 2,
     brand: 2,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 33,
@@ -718,13 +750,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 2,
     brand: 2,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 34,
@@ -740,13 +773,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 2,
     brand: 2,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 35,
@@ -762,13 +796,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 9,
     brand: 9,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 36,
@@ -784,13 +819,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 9,
     brand: 9,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 37,
@@ -806,13 +842,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 9,
     brand: 9,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 38,
@@ -828,13 +865,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 9,
     brand: 9,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 39,
@@ -850,13 +888,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 2,
+    gender: 2,
     category: 9,
     brand: 9,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 40,
@@ -872,13 +911,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 2,
     brand: 2,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 41,
@@ -894,13 +934,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 2,
     brand: 2,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 42,
@@ -916,13 +957,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 2,
     brand: 2,
     size: [3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 43,
@@ -938,13 +980,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 2,
     brand: 2,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 44,
@@ -960,13 +1003,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 2,
     brand: 2,
     size: [1],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 45,
@@ -982,13 +1026,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 3,
     brand: 3,
     size: [2],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 1
   },
   {
     id: 46,
@@ -1004,13 +1049,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 3,
     brand: 3,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 47,
@@ -1026,13 +1072,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 3,
     brand: 3,
     size: [1, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 48,
@@ -1048,13 +1095,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 3,
     brand: 3,
     size: [1, 2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 49,
@@ -1070,13 +1118,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 3,
     brand: 3,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'flat-hill-slingback'
+    slug: 'flat-hill-slingback',
+    type: 4
   },
   {
     id: 50,
@@ -1092,13 +1141,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 450,
-    genderId: 1,
+    gender: 1,
     category: 1,
     brand: 1,
     size: [1, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'redgemearrings'
+    slug: 'redgemearrings',
+    type: 1
   },
   {
     id: 51,
@@ -1114,13 +1164,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 200,
-    genderId: 1,
+    gender: 1,
     category: 1,
     brand: 1,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'redgemearrings'
+    slug: 'redgemearrings',
+    type: 4
   },
   {
     id: 52,
@@ -1136,13 +1187,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 530,
-    genderId: 1,
+    gender: 1,
     category: 1,
     brand: 1,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'redgemearrings'
+    slug: 'redgemearrings',
+    type: 4
   },
   {
     id: 53,
@@ -1158,13 +1210,14 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 1,
     brand: 1,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'redgemearrings'
+    slug: 'redgemearrings',
+    type: 1
   },
   {
     id: 54,
@@ -1180,12 +1233,13 @@ export const productLists: productsType[] = [
     productDescription: ["desc 1", "desc 2"],
     productOriginalPrice: 400,
     productCurrentPrice: 330,
-    genderId: 1,
+    gender: 1,
     category: 1,
     brand: 1,
     size: [2, 3],
     color: [2, 5],
     reviewRate: 4,
-    slug: 'redgemearrings'
+    slug: 'redgemearrings',
+    type: 4
   }
 ];
