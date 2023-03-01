@@ -21,8 +21,8 @@ export class OrderItems {
   @ManyToOne(() => OrderDetails, (orderDetails) => orderDetails.orderItemDetails, {
     onDelete: "CASCADE",
   })
-  orderDetail: OrderDetails
+  orderDetail: OrderDetails | number
 
   @ManyToMany(() => Product, (product) => product.orderItemDetails)
-  products: Product[]
+  products: Product[] | number
 }

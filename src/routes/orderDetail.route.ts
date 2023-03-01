@@ -1,8 +1,8 @@
-import { addOrderDetails, getOrderDetailsList } from '../controllers/orderDetail.controller';
+import { addOrderDetails } from '../controllers/orderDetail.controller';
 const express = require("express");
 const router = express.Router();
 
 router.post('/add', addOrderDetails)
-router.get('/', getOrderDetailsList)
+// router.get('/', getOrderDetailsList)
 
 export default router;

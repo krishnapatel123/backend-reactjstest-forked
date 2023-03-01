@@ -24,14 +24,27 @@ export class OrderDetails {
   @ManyToOne(() => UserData, (userData) => userData.orderDetails, {
     onDelete: "CASCADE",
   })
-  userData: UserData
+  userData: UserData | number
 
-  @OneToOne(() => Shipping, (shippingDetails) => shippingDetails.orderDetail)
-  shippingDetail: Shipping
+  // @Column()
+  // userDataId: number
 
-  @OneToOne(() => Checkout, (checkoutDetails) => checkoutDetails.orderDetail)
-  checkoutDetail: Checkout
+  @ManyToOne(() => Shipping, (shippingDetails) => shippingDetails.orderDetail, {
+    onDelete: "CASCADE",
+  })
+  shippingDetail: Shipping | number
+
+  // @Column()
+  // shippingDetailId: number
+
+  @ManyToOne(() => Checkout, (checkoutDetails) => checkoutDetails.orderDetail, {
+    onDelete: "CASCADE",
+  })
+  checkoutDetail: Checkout | number
+
+  // @Column()
+  // checkoutDetailId: number
 
   @OneToMany(() => OrderItems, (orderItemDetails) => orderItemDetails.orderDetail)
-  orderItemDetails: OrderItems[]
+  orderItemDetails: OrderItems[] | number
 }

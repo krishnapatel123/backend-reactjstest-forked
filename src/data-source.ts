@@ -21,6 +21,6 @@ export const myDataSource = new DataSource({
   password: process.env.DB_PASSWORD || "123",
   database: process.env.DB_DATABASE || "shopping_db",
   entities: [Gender, Brand, Category, Size, Product, Color, Shipping, UserData, Checkout, OrderDetails, OrderItems, Cart, CartItems],
-  logging: true,
+  // logging: true,
   synchronize: true,
 })

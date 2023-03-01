@@ -7,18 +7,18 @@ export const genderLists: genderType[] = [
     slug: "women"
   },
   {
+    id: 3,
+    name: "Collection",
+    slug: ""
+  },
+  {
     id: 2,
     name: "Men",
     slug: "men"
   },
   {
-    id: 3,
-    name: "Collection",
-    slug: "/"
-  },
-  {
     id: 4,
     name: "Outlet",
-    slug: "/"
+    slug: ""
   }
 ] 

@@ -8,7 +8,7 @@ export class Cart {
   id: number
 
   @ManyToOne(() => UserData, userData => userData.cart)
-  userData: UserData;
+  userData: UserData | number;
 
   @Column()
   userDataId: Number;

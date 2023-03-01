@@ -12,7 +12,20 @@ export const addProductDetails = async (req: Request, res: Response) => {
 };
 
 export const getProductList = async (req: Request, res: Response) => {
-  const productList: Product[] = await productService.getAllProductList();
+  console.log("req obj in getproductlist :", req.query);
+
+  const productList: { filterData: Product[], totalCount?: number, priceRange?: { max: number, min: number } } = await productService.getAllProductList(req.query);
+  // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA result response : ", productList);
+
+  try {
+    res.status(200).json(productList);
+  } catch (e) {
+    res.status(400).json(e.message);
+  }
+}
+
+export const getFilterProductDetails = async (req: Request, res: Response) => {
+  const productList: Product[] = await productService.getFilterProductLists();
   try {
     res.status(200).json(productList);
   } catch (e) {

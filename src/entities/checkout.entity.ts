@@ -27,6 +27,6 @@ export class Checkout {
   })
   userData: UserData | number
 
-  @OneToOne(() => OrderDetails, (orderDetails) => orderDetails.checkoutDetail)
-  orderDetail: OrderDetails
+  @OneToMany(() => OrderDetails, (orderDetails) => orderDetails.checkoutDetail)
+  orderDetail: OrderDetails[]
 }

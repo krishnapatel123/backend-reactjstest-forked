@@ -39,6 +39,6 @@ export class Shipping {
   })
   userData: UserData | number
 
-  @OneToOne(() => OrderDetails, (shippingDetails) => shippingDetails.shippingDetail)
-  orderDetail: OrderDetails
+  @OneToMany(() => OrderDetails, (shippingDetails) => shippingDetails.shippingDetail)
+  orderDetail: OrderDetails[]
 }

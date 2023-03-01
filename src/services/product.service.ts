@@ -3,11 +3,107 @@ import { productLists } from '../data/productLists';
 import { Product } from '../entities/product.entity';
 import { productsType } from '../types/products.type';
 
-export const getAllProductList = async (): Promise<Product[]> => {
+export const pagination = async (page: number, per_page: number, lengthData: number) => {
+  let count = Math.ceil(lengthData / per_page);
+  let indexOfLastRecord = page * per_page;
+  let indexOfFirstRecord = indexOfLastRecord - per_page;
 
-  const productRepository = myDataSource.getRepository(Product)
-  console.log("productlist length : ", productLists.length);
+  console.log("count index last and index first : ", count, indexOfFirstRecord, indexOfLastRecord, page);
 
+  return ({ count, indexOfLastRecord, indexOfFirstRecord });
+}
+export const getAllProductList = async (filters): Promise<{ filterData: Product[], totalCount?: number, priceRange?: { min: number, max: number } }> => {
+  console.log("service product get api fitlers : ", filters);
+
+  if (filters.type === 'bestDeal') {
+    console.log("sdkxhaskcjasNc : ", filters);
+    const res = await myDataSource.getRepository(Product).createQueryBuilder("product").where({ type: 2 }).getMany(); //find({ where: { type: 2 } });
+    return { filterData: res };
+  }
+  else if (filters.type === 'bestSeller') {
+    const res = await myDataSource.getRepository(Product).find({ where: { type: 3 } });
+    return { filterData: res };
+  }
+  else if (filters.type === 'checkoutNewArrivals') {
+    const res = await myDataSource.getRepository(Product).find({ where: { type: 1 } });
+    return { filterData: res };
+  }
+  else if (filters.gender && filters.category && typeof filters.category !== 'object' && filters.page && filters.per_page) {
+    console.log("filters inside else if : ", filters);
+
+    const res = await myDataSource
+      .getRepository(Product)
+      .createQueryBuilder("product")
+      .where("product.gender = :genderId", { genderId: parseInt(filters.gender) })
+      .andWhere("product.category = :categoryId", { categoryId: parseInt(filters.category) })
+      .getMany()
+    console.log("gender and category filters res : ", res.length);
+    let data = pagination(filters.page, filters.per_page, res.length);
+    let finalPaginateData = res.slice((await data).indexOfFirstRecord, (await data).indexOfLastRecord)
+    console.log("finalPaginateData : ", finalPaginateData.length);
+    return { filterData: finalPaginateData, totalCount: res.length };
+  }
+  else if (filters.gender && filters.category && typeof filters.category !== 'object') {
+    const res = await myDataSource
+      .getRepository(Product)
+      .createQueryBuilder("product")
+      .where("product.gender = :genderId", { genderId: parseInt(filters.gender) })
+      .andWhere("product.category = :categoryId", { categoryId: parseInt(filters.category) })
+      .getMany()
+    console.log("gender and category filters res : ", res.length);
+    return { filterData: res };
+  }
+  else if (filters?.brandFilters || filters?.categoryFilters || filters?.sizeFilters || filters?.priceFilters || filters.gender) {
+
+    let res = await myDataSource
+      .getRepository(Product)
+      .createQueryBuilder("product")
+      .where("product.gender = :genderId", { genderId: parseInt(filters.gender) })
+    // .andWhere("product.productCurrentPrice >= :price", { price: filters?.priceFilters[0] })
+    // .andWhere("product.productCurrentPrice <= :price", { price: filters?.priceFilters[1] })
+    // .orWhere("product.category In (:...categories)", { categories: filters?.categoryFilters })
+    // .orWhere("product.brand In (:...brands)", { brands: filters?.brandFilters })
+    // .getMany()
+
+    // if (filters?.gender) {
+    //   res.where("product.gender = :genderId", { genderId: parseInt(filters?.gender) })
+    // }
+    if (filters?.priceFilters) {
+      res.andWhere("product.productCurrentPrice >= :price", { price: filters?.priceFilters[0] })
+        .andWhere("product.productCurrentPrice <= :price", { price: filters?.priceFilters[1] })
+    }
+    if (filters?.categoryFilters) {
+      res.orWhere("product.category In (:...categories)", { categories: filters?.categoryFilters });
+    }
+    if (filters?.brandFilters) {
+      res.orWhere("product.brand In (:...brands)", { brands: filters?.brandFilters });
+    }
+    if (filters?.sizeFilters) {
+      res.orWhere("product.size In (:...sizes)", { sizes: filters?.sizeFilters });
+    }
+    const result = await res.getMany();
+    // console.log("result : ", result.length);
+
+    const priceRange = await myDataSource.getRepository(Product).createQueryBuilder("product")
+      .select("MAX(product.productCurrentPrice)")
+      .addSelect("MIN(product.productCurrentPrice)").getRawOne();
+    // console.log("priceRangeData : ", priceRange);
+
+    if (result.length > 0 && priceRange) {
+      console.log("gender and category filters res : ", result.length);
+      let data = await pagination(filters.page, filters.per_page, result.length);
+      let finalPaginateData = result.slice(data.indexOfFirstRecord, data.indexOfLastRecord)
+      console.log("finalPaginateData : ", finalPaginateData.length);
+      return { filterData: finalPaginateData, totalCount: result.length, priceRange: priceRange };
+    }
+    return;
+  }
+  else {
+    const res = await myDataSource.getRepository(Product).find({ relations: { brand: true, gender: true, category: true } });
+    console.log("else resp no filters : ", res.length);
+    return { filterData: res };
+    // return await productRepository.find({ relations: { brand: true, gender: true, category: true } });
+  }
   // productLists.map(async (p) => {
   //   const product = new Product();
   //   product.productName = p.productName;
@@ -27,7 +123,6 @@ export const getAllProductList = async (): Promise<Product[]> => {
   //   return data;
   // })
   // return;
-  return productRepository.find({ relations: { brand: true, gender: true, category: true } })
 }
 
 export const addProduct = async (productObj: productsType): Promise<Product> => {
@@ -47,4 +142,8 @@ export const addProduct = async (productObj: productsType): Promise<Product> => 
   product.slug = productObj.slug;
   product.type = productObj.type;
   return productRepository.save(product);
+}
+
+export const getFilterProductLists = async (): Promise<any> => {
+  return;
 }
