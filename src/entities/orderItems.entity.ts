@@ -23,4 +23,7 @@ export class OrderItems {
 
   @ManyToMany(() => Product, (product) => product.orderItemDetails)
   products: Product[] | number
+
+  @Column()
+  productsId: number;
 }
