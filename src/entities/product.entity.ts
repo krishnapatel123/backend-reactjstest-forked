@@ -1,10 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, ManyToMany, JoinColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, ManyToMany } from "typeorm"
 import { Brand } from "./brand.entity";
 import { Category } from './category.entity';
 import { Gender } from './gender.entity';
 import { OrderItems } from './orderItems.entity';
-import { Size } from './size.entity';
-import { Color } from "./color.entity";
 import { CartItems } from './cartItems.entity';
 
 export enum productBelongsToType {

@@ -3,10 +3,9 @@ import { shippingType } from '../types/shipping.type';
 import { Shipping } from '../entities/shipping.entity';
 
 export const addShipping = async (shippingObject: shippingType) => {
-
-  const shippingRepository = myDataSource.getRepository(Shipping)
-  const shipping = new Shipping();
   try {
+    const shippingRepository = myDataSource.getRepository(Shipping)
+    const shipping = new Shipping();
     shipping.userData = shippingObject.userId
     shipping.firstName = shippingObject.firstName
     shipping.lastName = shippingObject.lastName
@@ -17,17 +16,19 @@ export const addShipping = async (shippingObject: shippingType) => {
     shipping.city = shippingObject.city
     shipping.address = shippingObject.address
     shipping.zipCode = shippingObject.zipCode
-
     const res = await shippingRepository.save(shipping)
-    console.log("SHIPPING:::::::::::: ", res.id);
     return { shippingId: res.id };
   } catch (error) {
     return error.message;
   }
 }
 
-export const getShipping = async (): Promise<Shipping[]> => {
-  const shippingRepository = myDataSource.getRepository(Shipping)
-  const shippingDetail = await shippingRepository.find({ relations: { userData: true } })
-  return shippingDetail;
+export const getShipping = async () => {
+  try {
+    const shippingRepository = myDataSource.getRepository(Shipping)
+    const shippingDetail = await shippingRepository.find({ relations: { userData: true } })
+    return shippingDetail;
+  } catch (error) {
+    return error.message
+  }
 }

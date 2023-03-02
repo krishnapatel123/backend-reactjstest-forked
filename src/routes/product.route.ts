@@ -3,7 +3,6 @@ const express = require("express");
 const router = express.Router();
 
 router.post('/add', addProductDetails)
-// router.put('/', addProductDetails)
 router.get('/', getProductList)
 router.get('/cart', getCartProductList)
 

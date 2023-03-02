@@ -1,10 +1,10 @@
 import * as cartServices from "../services/cart.service";
 import { Request, Response } from "express"
+import { cartProductListsType } from "../types/cart.type";
 
 export const addProductToCartDetails = async (req: Request, res: Response) => {
 
-  const addToCartProductObj: any = await cartServices.addToCartProduct(req.body);
-  console.log("addProductToCartDetails response 11111111 ::::: ", addToCartProductObj);
+  const addToCartProductObj: cartProductListsType = await cartServices.addToCartProduct(req.body);
   try {
     res.status(200).json(addToCartProductObj);
   } catch (e) {
@@ -13,7 +13,7 @@ export const addProductToCartDetails = async (req: Request, res: Response) => {
 };
 
 export const getAddToCartList = async (req: Request, res: Response) => {
-  const addToCartProductDetails = await cartServices.getCartDetails(req.params.userId);
+  const addToCartProductDetails: cartProductListsType = await cartServices.getCartDetails(req.params.userId);
   try {
     res.status(200).json(addToCartProductDetails);
   } catch (e) {
@@ -22,7 +22,7 @@ export const getAddToCartList = async (req: Request, res: Response) => {
 };
 
 export const updateCartProductDetails = async (req: Request, res: Response) => {
-  const updatedCartProductDetails = await cartServices.updateCartDetails(req.body);
+  const updatedCartProductDetails: cartProductListsType = await cartServices.updateCartDetails(req.body);
   try {
     res.status(200).json(updatedCartProductDetails);
   } catch (e) {
@@ -31,9 +31,7 @@ export const updateCartProductDetails = async (req: Request, res: Response) => {
 };
 
 export const deleteCartProductDetails = async (req: Request, res: Response) => {
-  console.log("delte id qury : ", req.params);
-
-  const deleteCartProductDetails = await cartServices.deleteCartDetails(parseInt(req.params.id));
+  const deleteCartProductDetails: cartProductListsType = await cartServices.deleteCartDetails(parseInt(req.params.id));
   try {
     res.status(200).json(deleteCartProductDetails);
   } catch (e) {

@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, OneToMany, UpdateDateColumn, OneToOne } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, OneToMany, UpdateDateColumn } from "typeorm"
 import { UserData } from "./user.entity";
 import { Shipping } from "./shipping.entity";
 import { Checkout } from "./checkout.entity";
@@ -26,24 +26,15 @@ export class OrderDetails {
   })
   userData: UserData | number
 
-  // @Column()
-  // userDataId: number
-
   @ManyToOne(() => Shipping, (shippingDetails) => shippingDetails.orderDetail, {
     onDelete: "CASCADE",
   })
   shippingDetail: Shipping | number
 
-  // @Column()
-  // shippingDetailId: number
-
   @ManyToOne(() => Checkout, (checkoutDetails) => checkoutDetails.orderDetail, {
     onDelete: "CASCADE",
   })
   checkoutDetail: Checkout | number
-
-  // @Column()
-  // checkoutDetailId: number
 
   @OneToMany(() => OrderItems, (orderItemDetails) => orderItemDetails.orderDetail)
   orderItemDetails: OrderItems[] | number

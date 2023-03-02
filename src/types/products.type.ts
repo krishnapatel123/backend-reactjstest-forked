@@ -1,3 +1,6 @@
+import { CartItems } from "../entities/cartItems.entity"
+import { Product } from "../entities/product.entity"
+
 export interface productsType {
   id: number
   productName: string
@@ -13,4 +16,10 @@ export interface productsType {
   reviewRate: number,
   slug: string,
   type: number
+}
+
+export interface productResType {
+  filterData: Product | Product[] | CartItems[]
+  totalCount?: number
+  priceRange?: { min: number, max: number }
 }

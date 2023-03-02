@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm"
 import { Shipping } from './shipping.entity';
 import { Checkout } from './checkout.entity';
 import { OrderDetails } from "./orderDetails.entity";

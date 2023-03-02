@@ -1,7 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, ManyToMany, OneToMany } from "typeorm"
-import { OrderItems } from "./orderItems.entity";
-import { Product } from "./product.entity";
-import { CartItems } from './cartItems.entity';
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
 export class Size {
@@ -13,7 +10,4 @@ export class Size {
 
   @Column()
   value: string
-
-  // @OneToMany(() => OrderItems, orderItems => orderItems.size)
-  // orderItemDetails: OrderItems[];
 }

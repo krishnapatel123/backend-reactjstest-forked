@@ -1,8 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, OneToOne, OneToMany, JoinColumn, ManyToOne, Column, ManyToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from "typeorm"
 import { Cart } from "./cart.entity";
 import { Product } from './product.entity';
-import { Size } from "./size.entity";
-import { Color } from "./color.entity";
 
 @Entity()
 export class CartItems {

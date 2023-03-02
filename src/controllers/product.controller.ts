@@ -2,6 +2,7 @@ import * as productService from "../services/product.service";
 import { Request, Response } from "express"
 import { Product } from '../entities/product.entity';
 import { CartItems } from '../entities/cartItems.entity';
+import { productResType } from "../types/products.type";
 
 export const addProductDetails = async (req: Request, res: Response) => {
   const addProductList: Product = await productService.addProduct(req.body);
@@ -13,11 +14,7 @@ export const addProductDetails = async (req: Request, res: Response) => {
 };
 
 export const getProductList = async (req: Request, res: Response) => {
-  // console.log("req obj in getproductlist :", req.query);
-
-  const productList: { filterData: Product[] | Product | CartItems[], totalCount?: number, priceRange?: { max: number, min: number } } = await productService.getAllProductList(req.query);
-  // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA result response : ", productList);
-
+  const productList: productResType = await productService.getAllProductList(req.query);
   try {
     res.status(200).json(productList);
   } catch (e) {
@@ -27,8 +24,6 @@ export const getProductList = async (req: Request, res: Response) => {
 
 export const getCartProductList = async (req: Request, res: Response) => {
   const productList: { filterData: CartItems[] } = await productService.getAllCartProductList(req.query);
-  // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA result response : ", productList);
-
   try {
     res.status(200).json(productList);
   } catch (e) {
