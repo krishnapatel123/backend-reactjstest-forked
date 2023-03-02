@@ -2,7 +2,7 @@ export interface shippingType {
   id: number
   firstName: string
   lastName: string
-  email: string
+  emailAddress: string
   phoneNumber: string
   deliveryDate: string
   convenientTime: string

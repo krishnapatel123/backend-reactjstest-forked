@@ -2,21 +2,18 @@ import { myDataSource } from '../data-source';
 import { productLists } from '../data/productLists';
 import { Product } from '../entities/product.entity';
 import { productsType } from '../types/products.type';
+import { CartItems } from '../entities/cartItems.entity';
 
 export const pagination = async (page: number, per_page: number, lengthData: number) => {
   let count = Math.ceil(lengthData / per_page);
   let indexOfLastRecord = page * per_page;
   let indexOfFirstRecord = indexOfLastRecord - per_page;
-
-  console.log("count index last and index first : ", count, indexOfFirstRecord, indexOfLastRecord, page);
-
   return ({ count, indexOfLastRecord, indexOfFirstRecord });
 }
-export const getAllProductList = async (filters): Promise<{ filterData: Product[], totalCount?: number, priceRange?: { min: number, max: number } }> => {
-  console.log("service product get api fitlers : ", filters);
+export const getAllProductList = async (filters): Promise<{ filterData: Product | Product[] | CartItems[], totalCount?: number, priceRange?: { min: number, max: number } }> => {
+  // console.log("service product get api fitlers : ", filters);
 
   if (filters.type === 'bestDeal') {
-    console.log("sdkxhaskcjasNc : ", filters);
     const res = await myDataSource.getRepository(Product).createQueryBuilder("product").where({ type: 2 }).getMany(); //find({ where: { type: 2 } });
     return { filterData: res };
   }
@@ -37,10 +34,10 @@ export const getAllProductList = async (filters): Promise<{ filterData: Product[
       .where("product.gender = :genderId", { genderId: parseInt(filters.gender) })
       .andWhere("product.category = :categoryId", { categoryId: parseInt(filters.category) })
       .getMany()
-    console.log("gender and category filters res : ", res.length);
+    // console.log("gender and category filters res : ", res.length);
     let data = pagination(filters.page, filters.per_page, res.length);
     let finalPaginateData = res.slice((await data).indexOfFirstRecord, (await data).indexOfLastRecord)
-    console.log("finalPaginateData : ", finalPaginateData.length);
+    // console.log("finalPaginateData : ", finalPaginateData.length);
     return { filterData: finalPaginateData, totalCount: res.length };
   }
   else if (filters.gender && filters.category && typeof filters.category !== 'object') {
@@ -50,7 +47,7 @@ export const getAllProductList = async (filters): Promise<{ filterData: Product[
       .where("product.gender = :genderId", { genderId: parseInt(filters.gender) })
       .andWhere("product.category = :categoryId", { categoryId: parseInt(filters.category) })
       .getMany()
-    console.log("gender and category filters res : ", res.length);
+    // console.log("gender and category filters res : ", res.length);
     return { filterData: res };
   }
   else if (filters?.brandFilters || filters?.categoryFilters || filters?.sizeFilters || filters?.priceFilters || filters.gender) {
@@ -90,17 +87,32 @@ export const getAllProductList = async (filters): Promise<{ filterData: Product[
     // console.log("priceRangeData : ", priceRange);
 
     if (result.length > 0 && priceRange) {
-      console.log("gender and category filters res : ", result.length);
+      // console.log("gender and category filters res : ", result.length);
       let data = await pagination(filters.page, filters.per_page, result.length);
       let finalPaginateData = result.slice(data.indexOfFirstRecord, data.indexOfLastRecord)
-      console.log("finalPaginateData : ", finalPaginateData.length);
+      // console.log("finalPaginateData : ", finalPaginateData.length);
       return { filterData: finalPaginateData, totalCount: result.length, priceRange: priceRange };
     }
     return;
   }
+  else if (filters.id) {
+    console.log("STARTTTTTTTTTTTTT : ");
+    const res = await myDataSource.getRepository(Product).find({ where: { id: filters.id } });
+    // const res = await myDataSource.getRepository(CartItems).createQueryBuilder("cartItems").leftJoinAndSelect(Product, "product").where("cartItems.id = :id", { id: filters.id }).getMany();
+
+
+    // const res = await myDataSource.getRepository(CartItems)
+    //   .createQueryBuilder("cartItems")
+    //   .leftJoinAndSelect("cartItems.products", "product")
+    //   .where("cartItems.products = :id", { id: filters.id })
+    //   .getMany();
+
+    console.log("RESPONSEEEEEEEEEEEE  : ", res[0]);
+    return { filterData: res[0] };
+  }
   else {
     const res = await myDataSource.getRepository(Product).find({ relations: { brand: true, gender: true, category: true } });
-    console.log("else resp no filters : ", res.length);
+    // console.log("else resp no filters : ", res.length);
     return { filterData: res };
     // return await productRepository.find({ relations: { brand: true, gender: true, category: true } });
   }
@@ -144,6 +156,40 @@ export const addProduct = async (productObj: productsType): Promise<Product> => 
   return productRepository.save(product);
 }
 
-export const getFilterProductLists = async (): Promise<any> => {
-  return;
+export const getAllCartProductList = async (filters): Promise<{ filterData: any }> => {
+  // console.log("STARTTTTTTTTTTTTT : "), filters;
+
+  const res = await myDataSource.getRepository(CartItems)
+    .createQueryBuilder("cartItems")
+    .leftJoinAndSelect("cartItems.products", "product")
+    .where("cartItems.cartId = :id", { id: filters.id })
+    .getMany();
+
+  // console.log("if single product detail get resp : ", res);
+
+  // const extraChanges = {
+  //   Shipping: 64,
+  //   vatAndTax: 64,
+  // };
+  // let grandTotal = 0;
+  // let subTotal = 0;
+  // let result: { cartProductDetails, totalInfo } = {
+  //   cartProductDetails: res,
+  //   totalInfo: {}
+  // };
+  // result.cartProductDetails.map((r) => {
+  //   console.log("r : ", r);
+  //   const products: Product = r.products;
+  //   subTotal += r.quantity * products.productCurrentPrice;
+  // })
+  // grandTotal = subTotal + extraChanges.Shipping + extraChanges.vatAndTax
+  // result.totalInfo = {
+  //   subTotal: subTotal,
+  //   total: grandTotal,
+  //   Shipping: 64,
+  //   VatAndTax: 64
+  // }
+  // console.log("total :::::::::::::::::::::::::::: ", result);
+
+  return { filterData: res };
 }

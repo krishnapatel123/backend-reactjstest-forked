@@ -10,18 +10,23 @@
 // }
 
 export interface orderDetailsType {
-  productList: [
+  cartItemsDetails: [
     {
+      id: number,
+      cartId: number,
       productId: number,
       quantity: number,
-      sizeId: number,
-      colorId: number
+      size: number,
+      color: number
     }
   ],
-  information: {
-    userId: number,
-    total: number,
-    shippingId: number,
-    checkoutId: number
+  userId: number,
+  shippingId: number,
+  checkoutId: number,
+  totalInfo: {
+    grandTotal: number,
+    subTotal: number,
+    Shipping: number,
+    VatAndTax: number
   }
 }

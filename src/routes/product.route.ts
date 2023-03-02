@@ -1,10 +1,11 @@
-import { addProductDetails, getFilterProductDetails, getProductList } from '../controllers/product.controller';
+import { addProductDetails, getCartProductList, getProductList } from '../controllers/product.controller';
 const express = require("express");
 const router = express.Router();
 
 router.post('/add', addProductDetails)
+// router.put('/', addProductDetails)
 router.get('/', getProductList)
-router.get('/:filters', getFilterProductDetails)
+router.get('/cart', getCartProductList)
 
 
 export default router;

@@ -10,14 +10,17 @@ export const addShipping = async (shippingObject: shippingType) => {
     shipping.userData = shippingObject.userId
     shipping.firstName = shippingObject.firstName
     shipping.lastName = shippingObject.lastName
-    shipping.email = shippingObject.email
+    shipping.email = shippingObject.emailAddress
     shipping.phoneNumber = shippingObject.phoneNumber
     shipping.deliveryDate = shippingObject.deliveryDate
     shipping.convenientTime = shippingObject.convenientTime
     shipping.city = shippingObject.city
     shipping.address = shippingObject.address
     shipping.zipCode = shippingObject.zipCode
-    return shippingRepository.save(shipping)
+
+    const res = await shippingRepository.save(shipping)
+    console.log("SHIPPING:::::::::::: ", res.id);
+    return { shippingId: res.id };
   } catch (error) {
     return error.message;
   }

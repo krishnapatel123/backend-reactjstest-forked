@@ -6,29 +6,32 @@ import { UserData } from '../entities/user.entity';
 import { orderDetailsType } from '../types/orderDetails.type';
 
 export const addOrderDetails = async (orderDetailsObj: orderDetailsType) => {
-  console.log("orderDetailobj : ", orderDetailsObj);
+  console.log("1111111111 orderDetailobj : ", orderDetailsObj);
   await myDataSource.createQueryBuilder().insert().into(OrderDetails).values({
-    userData: orderDetailsObj.information.userId,
-    total: orderDetailsObj.information.total,
-    shippingDetail: orderDetailsObj.information.shippingId,
-    checkoutDetail: orderDetailsObj.information.checkoutId,
+    userData: orderDetailsObj.userId,
+    total: orderDetailsObj.totalInfo.grandTotal,
+    shippingDetail: orderDetailsObj.shippingId,
+    checkoutDetail: orderDetailsObj.checkoutId,
   }).execute().then(async (res) => {
-    console.log("after sav order details : ", res);
+    console.log("22222222 after sav order details : ", res);
     if (res) {
-      orderDetailsObj.productList.map(async (product) => {
+      orderDetailsObj.cartItemsDetails.map(async (product) => {
         await myDataSource.createQueryBuilder().insert().into(OrderItems).values({
           products: product.productId,
           quantity: product.quantity,
-          color: product.colorId,
-          size: product.sizeId,
+          color: product.color,
+          size: product.size,
           orderDetail: res.identifiers[0].id
         }).execute().then(async (res) => {
-          console.log("after save prder items obj : ");
+          console.log("33333 after save prder items obj : ");
           //delete cart and cartitem table
         })
       })
-      const cart = await myDataSource.getRepository(Cart).findOne({ where: { userData: orderDetailsObj.information.userId } });
-      return await myDataSource.getRepository(Cart).createQueryBuilder("cart").delete().where("id = :id", { id: cart.id }).execute();
+      const cart = await myDataSource.getRepository(Cart).findOne({ where: { userData: orderDetailsObj.userId } });
+      const d = await myDataSource.getRepository(Cart).createQueryBuilder("cart").delete().where("id = :id", { id: cart.id }).execute();
+      console.log("$$$$$$$$ FINAL RESP $$$$$$$$$$$$$$$$ : ", d);
+
+      return d;
     }
   });
   return;

@@ -2,9 +2,9 @@ import * as cartServices from "../services/cart.service";
 import { Request, Response } from "express"
 
 export const addProductToCartDetails = async (req: Request, res: Response) => {
-  console.log("addProductToCartDetails ::::: ", req.body);
 
-  const addToCartProductObj = await cartServices.addToCartProduct(req.body);
+  const addToCartProductObj: any = await cartServices.addToCartProduct(req.body);
+  console.log("addProductToCartDetails response 11111111 ::::: ", addToCartProductObj);
   try {
     res.status(200).json(addToCartProductObj);
   } catch (e) {

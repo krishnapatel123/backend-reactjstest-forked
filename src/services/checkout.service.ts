@@ -5,6 +5,8 @@ import { UserData } from '../entities/user.entity';
 
 export const addCheckout = async (checkoutObject: checkoutType) => {
 
+  console.log("checkout obj in add API :::::::: ", checkoutObject);
+
   const checkoutRepository = myDataSource.getRepository(Checkout)
   const checkout = new Checkout();
   try {
@@ -14,10 +16,13 @@ export const addCheckout = async (checkoutObject: checkoutType) => {
     checkout.cardNumber = checkoutObject.cardNumber
     checkout.expiration = checkoutObject.expiration
     checkout.cvvCode = checkoutObject.cvvCode
-    return checkoutRepository.save(checkout)
-  } catch (error) {
-    console.log("error : ", error);
 
+
+    const res = await checkoutRepository.save(checkout)
+    console.log("CHECKIUT:::::::::::: ", res.id);
+    return { checkoutId: res.id };
+  } catch (error) {
+    console.log("error checkout : ", error);
     return error.message;
   }
 }
