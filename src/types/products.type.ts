@@ -21,5 +21,5 @@ export interface productsType {
 export interface productResType {
   filterData: Product | Product[] | CartItems[]
   totalCount?: number
-  priceRange?: { min: number, max: number }
+  priceRange?: [number, number]
 }

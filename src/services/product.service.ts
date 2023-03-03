@@ -31,16 +31,17 @@ export const getAllProductList = async (filters) => {
         .find({ where: { type: 1 } });
       return { filterData: res };
     }
-    else if (filters.gender && filters.category && typeof filters.category !== 'object' && filters.page && filters.per_page) {
+    else if (filters.gender && (filters.category && typeof filters.category !== 'object' || filters.brand && typeof filters.brand !== 'object') && filters.page && filters.per_page) {
       const res = await myDataSource
         .getRepository(Product)
         .createQueryBuilder("product")
         .where("product.gender = :genderId", { genderId: parseInt(filters.gender) })
         .andWhere("product.category = :categoryId", { categoryId: parseInt(filters.category) })
         .getMany()
+      let priceRange = [Math.min(...res.map(product => product.productCurrentPrice)), Math.max(...res.map(product => product.productCurrentPrice))]
       let data = pagination(filters.page, filters.per_page, res.length);
       let finalPaginateData = res.slice((await data).indexOfFirstRecord, (await data).indexOfLastRecord)
-      return { filterData: finalPaginateData, totalCount: res.length };
+      return { filterData: finalPaginateData, totalCount: res.length, priceRange: priceRange };
     }
     else if (filters.gender && filters.category && typeof filters.category !== 'object') {
       const res = await myDataSource
@@ -51,37 +52,31 @@ export const getAllProductList = async (filters) => {
         .getMany()
       return { filterData: res };
     }
-    else if (filters?.brandFilters || filters?.categoryFilters || filters?.sizeFilters || filters?.priceFilters || filters.gender) {
+    else if (filters?.brandFilters || filters?.categoryFilters || filters?.sizeFilters || filters?.priceFilters && filters.gender && filters.page && filters.per_page) {
       let res = await myDataSource
         .getRepository(Product)
         .createQueryBuilder("product")
         .where("product.gender = :genderId", { genderId: parseInt(filters.gender) })
       if (filters?.priceFilters) {
-        res.andWhere("product.productCurrentPrice >= :price", { price: filters?.priceFilters[0] })
-          .andWhere("product.productCurrentPrice <= :price", { price: filters?.priceFilters[1] })
+        res.andWhere("(product.productCurrentPrice >= :minprice AND product.productCurrentPrice <= :maxprice)", { minprice: filters?.priceFilters[0], maxprice: filters?.priceFilters[1] })
       }
       if (filters?.categoryFilters) {
-        res.orWhere("product.category In (:...categories)", { categories: filters?.categoryFilters });
+        res.andWhere("product.category In (:...categories)", { categories: filters?.categoryFilters });
       }
       if (filters?.brandFilters) {
-        res.orWhere("product.brand In (:...brands)", { brands: filters?.brandFilters });
+        res.andWhere("product.brand In (:...brands)", { brands: filters?.brandFilters });
       }
       if (filters?.sizeFilters) {
-        res.orWhere("product.size In (:...sizes)", { sizes: filters?.sizeFilters });
+        res.andWhere("product.size In (:...sizes)", { sizes: filters?.sizeFilters });
       }
       const result = await res.getMany();
-      const priceRange = await myDataSource
-        .getRepository(Product)
-        .createQueryBuilder("product")
-        .select("MAX(product.productCurrentPrice)")
-        .addSelect("MIN(product.productCurrentPrice)")
-        .getRawOne();
+      let priceRange = [Math.min(...result.map(product => product.productCurrentPrice)), Math.max(...result.map(product => product.productCurrentPrice))]
       if (result.length > 0 && priceRange) {
         let data = await pagination(filters.page, filters.per_page, result.length);
         let finalPaginateData = result.slice(data.indexOfFirstRecord, data.indexOfLastRecord)
         return { filterData: finalPaginateData, totalCount: result.length, priceRange: priceRange };
       }
-      return;
+      return { filterData: [], totalCount: result.length, priceRange: [0, 0] };
     }
     else if (filters.id) {
       const res = await myDataSource
