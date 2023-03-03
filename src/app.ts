@@ -2,8 +2,8 @@ import * as express from 'express';
 import * as cors from 'cors';
 import { Request, Response, NextFunction } from 'express';
 import { myDataSource } from './data-source'
-
 import indexRoute from './routes/index.route';
+import { verifyToken } from '../src/utils/jwt';
 
 const bodyParser = require('body-parser');
 

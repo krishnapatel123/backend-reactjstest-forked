@@ -10,7 +10,7 @@ export class UserData {
   id: number
 
   @Column()
-  userName: string
+  username: string
 
   @Column()
   password: string
