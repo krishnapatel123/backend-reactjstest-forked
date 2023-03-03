@@ -66,13 +66,13 @@ export const getAllProductList = async (filters) => {
         res.andWhere("(product.productCurrentPrice >= :minprice AND product.productCurrentPrice <= :maxprice)", { minprice: filters?.priceFilters[0], maxprice: filters?.priceFilters[1] })
       }
       if (filters?.categoryFilters) {
-        res.andWhere("product.category In (:...categories)", { categories: filters?.categoryFilters });
+        res.orWhere("product.category In (:...categories)", { categories: filters?.categoryFilters });
       }
       if (filters?.brandFilters) {
-        res.andWhere("product.brand In (:...brands)", { brands: filters?.brandFilters });
+        res.orWhere("product.brand In (:...brands)", { brands: filters?.brandFilters });
       }
       if (filters?.sizeFilters) {
-        res.andWhere("product.size In (:...sizes)", { sizes: filters?.sizeFilters });
+        res.orWhere("product.size In (:...sizes)", { sizes: filters?.sizeFilters });
       }
       const result = await res.getMany();
       let priceRange = [Math.min(...result.map(product => product.productCurrentPrice)), Math.max(...result.map(product => product.productCurrentPrice))]
