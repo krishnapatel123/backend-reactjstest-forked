@@ -32,12 +32,17 @@ export const getAllProductList = async (filters) => {
       return { filterData: res };
     }
     else if (filters.gender && (filters.category && typeof filters.category !== 'object' || filters.brand && typeof filters.brand !== 'object') && filters.page && filters.per_page) {
-      const res = await myDataSource
+      let query = await myDataSource
         .getRepository(Product)
         .createQueryBuilder("product")
-        .where("product.gender = :genderId", { genderId: parseInt(filters.gender) })
-        .andWhere("product.category = :categoryId", { categoryId: parseInt(filters.category) })
-        .getMany()
+        .where("product.gender = :genderId", { genderId: parseInt(filters.gender) });
+      if (filters.category) {
+        query.andWhere("product.category = :categoryId", { categoryId: parseInt(filters.category) })
+      }
+      if (filters.brand) {
+        query.andWhere("product.brand = :brandId", { brandId: parseInt(filters.brand) })
+      }
+      let res = await query.getMany();
       let priceRange = [Math.min(...res.map(product => product.productCurrentPrice)), Math.max(...res.map(product => product.productCurrentPrice))]
       let data = pagination(filters.page, filters.per_page, res.length);
       let finalPaginateData = res.slice((await data).indexOfFirstRecord, (await data).indexOfLastRecord)
