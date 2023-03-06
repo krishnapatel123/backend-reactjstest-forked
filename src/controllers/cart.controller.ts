@@ -13,7 +13,7 @@ export const addProductToCartDetails = async (req: Request, res: Response) => {
 };
 
 export const getAddToCartList = async (req: Request, res: Response) => {
-  const addToCartProductDetails: cartProductListsType = await cartServices.getCartDetails(req.params.userId);
+  const addToCartProductDetails: cartProductListsType = await cartServices.getCartDetails(req.body.userId);
   try {
     res.status(200).json(addToCartProductDetails);
   } catch (e) {
@@ -31,7 +31,7 @@ export const updateCartProductDetails = async (req: Request, res: Response) => {
 };
 
 export const deleteCartProductDetails = async (req: Request, res: Response) => {
-  const deleteCartProductDetails: cartProductListsType = await cartServices.deleteCartDetails(parseInt(req.params.id));
+  const deleteCartProductDetails: cartProductListsType = await cartServices.deleteCartDetails(parseInt(req.body.userId), parseInt(req.params.id));
   try {
     res.status(200).json(deleteCartProductDetails);
   } catch (e) {

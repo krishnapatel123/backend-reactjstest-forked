@@ -27,6 +27,7 @@ export interface updateCartDataType {
   quantity?: string
   size?: number
   color?: number
+  userId: number
 }
 
 export interface addCartDataType {
@@ -34,5 +35,5 @@ export interface addCartDataType {
   quantity: number
   size: number
   color: number
-  userId: number | any
+  userId: number
 }

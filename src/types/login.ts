@@ -1,5 +1,12 @@
 export interface userType {
   userName: string
   password: string
-  userId?: number
+}
+export interface userResType {
+  userInfo: {
+    id: number
+    username: string
+    password: string
+  }
+  auth: string
 }

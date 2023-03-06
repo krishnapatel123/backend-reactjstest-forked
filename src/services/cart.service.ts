@@ -6,10 +6,8 @@ import { addCartDataType, updateCartDataType } from '../types/cart.type';
 
 export const addToCartProduct = async (cartDetails: addCartDataType) => {
   try {
-    const cartRepository = myDataSource.getRepository(Cart)
-    const cartData = await cartRepository.findOne({
-      where: { userDataId: cartDetails.userId }
-    });
+    const cartRepository = myDataSource.getRepository(Cart);
+    const cartData = await cartRepository.createQueryBuilder("cart").where({ userDataId: cartDetails.userId }).getOne();
     if (cartData) {
       //add to cartitem
       const checkProduct = await myDataSource
@@ -45,7 +43,7 @@ export const addToCartProduct = async (cartDetails: addCartDataType) => {
     } else {
       //createcart and then add to cartitems
       const cart = new Cart();
-      cart.userDataId = parseInt(cartDetails.userId);
+      cart.userDataId = cartDetails.userId;
       const result = await cartRepository.save(cart);
       if (result) {
         await myDataSource
@@ -109,32 +107,26 @@ export const updateCartDetails = async (updatedData: updateCartDataType) => {
       result = updatedResult.raw[0];
     }
     if (result) {
-      const userData = await myDataSource.getRepository(Cart).find({ where: { id: result.cartId } });
-      if (userData) {
-        const res = await getCartDetails(userData[0].userDataId);
-        return res;
-      }
+      const res = await getCartDetails(updatedData.userId);
+      return res;
     }
   } catch (error) {
     return error.message
   }
 }
 
-export const deleteCartDetails = async (id: number) => {
+export const deleteCartDetails = async (userId: number, productId: number) => {
   try {
     const data = await myDataSource
       .createQueryBuilder()
       .delete()
       .from(CartItems)
-      .where("id = :id", { id: id })
+      .where("id = :id", { id: productId })
       .returning('*')
       .execute()
     if (data) {
-      const userData = await myDataSource.getRepository(Cart).find({ where: { id: data.raw[0].cartId } });
-      if (userData) {
-        const res = await getCartDetails(userData[0].userDataId);
-        return res;
-      }
+      const res = await getCartDetails(userId);
+      return res;
     }
   } catch (error) {
     return error.message
@@ -149,6 +141,7 @@ export const getCartDetails = async (userId) => {
       .leftJoin('cart.cartItems', 'cartItems')
       .leftJoin('cartItems.products', 'products')
       .where("cart.userDataId = :id", { id: userId })
+      .orderBy('cartItems.id', 'ASC')
       .getMany();
     let finalRes = [];
     let totalInfo = {
