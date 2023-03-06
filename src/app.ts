@@ -3,7 +3,6 @@ import * as cors from 'cors';
 import { Request, Response, NextFunction } from 'express';
 import { myDataSource } from './data-source'
 import indexRoute from './routes/index.route';
-import { verifyToken } from '../src/utils/jwt';
 
 const bodyParser = require('body-parser');
 
@@ -23,7 +22,6 @@ const main = () => {
   app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(500).json({ message: err.message });
   });
-  app.use('/uploads', express.static('./uploads'));
   app.use(bodyParser.json());
   app.use(express.json())
   app.use('/api', indexRoute)

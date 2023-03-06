@@ -5,6 +5,13 @@ import { CartItems } from '../entities/cartItems.entity';
 import { productResType } from "../types/products.type";
 
 export const addProductDetails = async (req: Request, res: Response) => {
+  let productImages = []
+  if (Array.isArray(req.files) && req.files?.length > 0) {
+    req.files.forEach((val, key) => {
+      productImages.push(`assests/${val.filename}`);
+    });
+  }
+  req.body.productImages = productImages;
   const addProductList: Product = await productService.addProduct(req.body);
   try {
     res.status(200).json(addProductList);
