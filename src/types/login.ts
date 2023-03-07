@@ -3,10 +3,12 @@ export interface userType {
   password: string
 }
 export interface userResType {
-  userInfo: {
+  userInfo?: {
     id: number
     username: string
     password: string
   }
-  auth: string
+  auth?: string
+  errorStatus?: number
+  message?: string
 }

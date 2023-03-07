@@ -23,11 +23,14 @@ export const addShipping = async (shippingObject: shippingType) => {
   }
 }
 
-export const getShipping = async () => {
+export const getShipping = async (userId) => {
   try {
     const shippingRepository = myDataSource.getRepository(Shipping)
-    const shippingDetail = await shippingRepository.find({ relations: { userData: true } })
-    return shippingDetail;
+    const shippingDetail = await shippingRepository.findOne({
+      where: { userData: userId },
+      order: { id: 'DESC' },
+    });
+    return { shippingId: shippingDetail.id };
   } catch (error) {
     return error.message
   }

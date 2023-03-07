@@ -14,11 +14,12 @@ export const userLogin = async (userCredentials: userType) => {
       if (token) {
         return { userInfo, auth: token }
       }
-    } else {
-      return 'Provide correct user credentials'
+    }
+    else {
+      return { errorStatus: 401, message: 'Provide correct user credentials' }
     }
   }
   catch (error) {
-    return error.message
+    return { errorStatus: 401, message: error.message }
   }
 }
