@@ -150,29 +150,35 @@ export const getCartDetails = async (userId) => {
       Shipping: 64,
       VatAndTax: 64
     }
-    cartProductData.map(async (cartProduct) => {
-      cartProduct.cartItems.map((cartItems: CartItems & { products: Product }) => {
-        let productData = {
-          id: 0,
-          cartId: 0,
-          quantity: 0,
-          size: 0,
-          color: 0,
-          productId: 0
-        };
-        productData.cartId = cartProduct.id;
-        productData.id = cartItems.id;
-        productData.quantity = cartItems.quantity;
-        productData.size = cartItems.size;
-        productData.color = cartItems.color;
-        productData.productId = cartItems.products.id;
-        totalInfo.subTotal += cartItems.quantity * cartItems.products.productCurrentPrice;
-        finalRes.push(productData);
+    if (cartProductData.length > 0) {
+      cartProductData.map(async (cartProduct) => {
+        cartProduct.cartItems.map((cartItems: CartItems & { products: Product }) => {
+          let productData = {
+            id: 0,
+            cartId: 0,
+            quantity: 0,
+            size: 0,
+            color: 0,
+            productId: 0
+          };
+          productData.cartId = cartProduct.id;
+          productData.id = cartItems.id;
+          productData.quantity = cartItems.quantity;
+          productData.size = cartItems.size;
+          productData.color = cartItems.color;
+          productData.productId = cartItems.products.id;
+          totalInfo.subTotal += cartItems.quantity * cartItems.products.productCurrentPrice;
+          finalRes.push(productData);
+        })
       })
-    })
-    totalInfo.grandTotal = totalInfo.subTotal + totalInfo.Shipping + totalInfo.VatAndTax;
-    let response = { cartItemsDetails: finalRes, totalInfo: totalInfo }
-    return response;
+      totalInfo.grandTotal = totalInfo.subTotal + totalInfo.Shipping + totalInfo.VatAndTax;
+      let response = { cartItemsDetails: finalRes, totalInfo: totalInfo }
+      return response;
+    } else {
+      totalInfo.grandTotal = totalInfo.subTotal + totalInfo.Shipping + totalInfo.VatAndTax;
+      let response = { cartItemsDetails: finalRes, totalInfo: totalInfo }
+      return response;
+    }
   } catch (error) {
     return error.message
   }

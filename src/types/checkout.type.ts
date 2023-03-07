@@ -6,4 +6,5 @@ export interface checkoutType {
   expiration: string
   cvvCode: number
   userId: number
+  cartId: number
 }

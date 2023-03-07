@@ -12,7 +12,7 @@ export const addShippingDetails = async (req: Request, res: Response) => {
 };
 
 export const getShippingDetails = async (req: Request, res: Response) => {
-  const shippingList: { shippingId: number } = await shippingService.getShipping(req.body.userId);
+  const shippingList: { shippingId: number } = await shippingService.getShipping(req.body.userId, req.params.id);
   try {
     res.status(200).json(shippingList);
   } catch (e) {

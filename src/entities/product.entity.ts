@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, ManyToMany } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm"
 import { Brand } from "./brand.entity";
 import { Category } from './category.entity';
 import { Gender } from './gender.entity';
@@ -74,7 +74,7 @@ export class Product {
   })
   type: productBelongsToType
 
-  @ManyToMany(() => OrderItems, (orderItemDetails) => orderItemDetails.products)
+  @OneToMany(() => OrderItems, (orderItemDetails) => orderItemDetails.products)
   orderItemDetails: OrderItems[]
 
   @OneToMany(() => CartItems, (cartItems) => cartItems.products)

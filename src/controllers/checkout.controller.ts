@@ -12,7 +12,7 @@ export const addCheckoutDetails = async (req: Request, res: Response) => {
 };
 
 export const getCheckoutDetails = async (req: Request, res: Response) => {
-  const checkoutDetails: Checkout[] = await checkoutServices.getCheckout();
+  const checkoutDetails: { checkoutId: number } = await checkoutServices.getCheckout(req.body.userId, req.params.id);
   try {
     res.status(200).json(checkoutDetails);
   } catch (e) {

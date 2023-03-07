@@ -10,4 +10,5 @@ export interface shippingType {
   address: string
   zipCode: string
   userId: number
+  cartId: number
 }

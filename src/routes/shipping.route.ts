@@ -4,6 +4,6 @@ const express = require("express");
 const router = express.Router();
 
 router.post('/add', verifyToken, addShippingDetails)
-router.get('/', verifyToken, getShippingDetails)
+router.get('/:id', verifyToken, getShippingDetails)
 
 export default router;
